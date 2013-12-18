@@ -1,0 +1,24 @@
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.label :time %>
+  <%= f.text_field :time, :as => :booking["time"] %><br /><br />
+
+  <%= f.label :needs_supplies %>
+  <%= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><br /><br />
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
