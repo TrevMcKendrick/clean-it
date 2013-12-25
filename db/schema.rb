@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218194603) do
+ActiveRecord::Schema.define(version: 20131224233427) do
 
   create_table "booking_jobs", force: true do |t|
     t.integer  "booking_id"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20131218194603) do
     t.datetime "time"
     t.boolean  "needs_supplies"
     t.integer  "worker_id"
+    t.integer  "customer_id"
+    t.float    "hours"
+  end
+
+  create_table "customers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
+    t.string   "phone"
   end
 
   create_table "jobs", force: true do |t|

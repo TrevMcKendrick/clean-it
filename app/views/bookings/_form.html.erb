@@ -18,6 +18,11 @@
   <%= f.label :needs_supplies %>
   <%= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><br /><br />
 
+  <%= f.label :hours %>
+  <%= f.select :hours, (0..12), :as => :booking["hours"] %><br /><br />
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
