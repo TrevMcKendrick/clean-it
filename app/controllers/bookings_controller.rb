@@ -24,8 +24,10 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
+    binding.pry
     @booking = Booking.new(booking_params)
-
+    @customer = @booking.create_customer(customer_params[:customer])
+    
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -69,6 +71,10 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:time, :needs_supplies)
+      params.require(:booking).permit(:time, :needs_supplies, :hours)
+    end
+
+    def customer_params
+      params.require(:booking).permit(customer: [:name, :address, :email, :phone])
     end
 end

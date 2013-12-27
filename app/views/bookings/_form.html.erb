@@ -1,4 +1,5 @@
-<%= form_for(@booking) do |f| %>
+
+<%= form_for @booking,:html => { :id => "cleaning-form" } do |f| %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -11,19 +12,67 @@
     </div>
   <% end %>
 
+  <div id="booking-details" style="display:none;">
+    <h1>Customize Your Cleaning</h1>
+      <%= f.label :needs_supplies %>
+      <%= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><br /><br />
 
-  <%= f.label :time %>
-  <%= f.text_field :time, :as => :booking["time"] %><br /><br />
+      <%= f.label :hours %>
+      <%= f.select :hours, (0..12), :as => :booking["hours"] %><br /><br />
 
-  <%= f.label :needs_supplies %>
-  <%= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><br /><br />
+      <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-block btn-primary btn-cta" %>
+  </div>
 
-  <%= f.label :hours %>
-  <%= f.select :hours, (0..12), :as => :booking["hours"] %><br /><br />
+  <div id="contact-info" style="display:none;">
+    <%= f.fields_for :customer do |builder| %> 
+      <h1>Contact Info</h1>
+        <%= label_tag :name %>
+        <%= builder.text_field :name, :as => :customer["name"] %><br />
+
+        <%= label_tag :address %>
+        <%= builder.text_field :address, :as => :customer["address"] %><br />
+
+        <%= label_tag :email %>
+        <%= builder.text_field :email, :as => :customer["email"] %><br />
+
+        <%= label_tag :phone %>
+        <%= builder.text_field :phone, :as => :customer["phone"] %><br />
+
+        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-block btn-primary btn-cta" %>
+
+    <% end %>  
+  </div> 
+
+  <div id="schedule-time" style="display:none;">
+    <h1>Schedule a time</h1>
+      <%= f.label :time %>
+      <%= f.text_field :time, :id => "schedule-time", :as => :booking["time"] %><br /><br />
+
+      <%= link_to "Next", '#payment-info', :id => "schedule-time-complete", :class => "btn btn-block btn-primary btn-cta" %>
+  </div>
+
+  <div id="payment-info" style="display:block;">
+    <h1>Payment info</h1>
+
+      <%= label_tag :card_number, "Credit Card Number" %>
+      <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
+
+      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+      <%= text_field_tag :card_code, nil, name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
+
+      <%= label_tag :card_month, "Card Expiration" %>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } } %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
+
+      <div style="display:none;">
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-block btn-primary btn-cta" %>
+      </div>
+
+  </div>
 
 
-
-  <div class="actions">
+  <div class="actions" id="finalize-booking" style="display:block;">
     <%= f.submit %>
   </div>
+
 <% end %>
