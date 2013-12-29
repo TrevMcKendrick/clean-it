@@ -27,7 +27,21 @@ class BookingsController < ApplicationController
     binding.pry
     @booking = Booking.new(booking_params)
     @customer = @booking.create_customer(customer_params[:customer])
-    
+
+    stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank")
+    @customer.stripe_id = stripe_customer_object.id
+    @customer.save
+
+    begin
+      charge = Stripe::Charge.create(
+        :amount => 1000, # amount in cents, again
+        :currency => "usd",
+        :customer => @customer.stripe_id,
+      )
+    rescue Stripe::CardError => e
+      # The card has been declined
+    end
+
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }

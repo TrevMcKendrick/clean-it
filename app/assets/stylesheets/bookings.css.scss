@@ -1,12 +1,51 @@
-// Place all the styles related to the bookings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
 
 [class*="span"].bordered {
   border-style:solid;
   border-width:1px;
+  padding: 5px 150px;
+  background-color: #F8F8FF;
+  margin-top: 15px;
+}
+
+.house-details {
+  border-style:solid;
+  border-width:1px;
   padding: 5px;
   background-color: #F8F8FF;
   margin-top: 15px;
+}
+
+.house-details .room-header {
+  float:left;
+  font-size: 25px;
+}
+
+.house-extras {
+  border-style:solid;
+  border-width:1px;
+  padding: 5px;
+  background-color: #F8F8FF;
+  margin-top: 15px;
+}
+
+.house-buttons {
+  text-align: right;
+}
+
+a.btn {
+  padding: 15px;
+  font-size: 25px;
+  color: white;
+  &:visited {
+    color: white;
+  }
+}
+
+#house-extras {
+  padding: 10px;
+}
+
+#house-extras .house-buttons .btn-group {
+  padding: 5px;
 }

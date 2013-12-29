@@ -12,15 +12,62 @@
     </div>
   <% end %>
 
-  <div id="booking-details" style="display:none;">
+  <div id="booking-details" style="display:block;">
     <h1>Customize Your Cleaning</h1>
-      <%= f.label :needs_supplies %>
-      <%= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><br /><br />
+        <div class="btn-group btn-group-lg house-details rooms">
+            <div class="room-header">
+              <h4>Bedrooms</h4>
+            </div>
+          
+          <input type="hidden" id="bedroom-value" value="" name="booking[bedroom]"/>
+          <div class="house-buttons btn-group bedroom roomcount">
+            <button type="button" class="btn btn-success" onclick="setBedroomValue(1)">One</button>
+            <button type="button" class="btn" onclick="setBedroomValue(2)">Two</button>
+            <button type="button" class="btn" onclick="setBedroomValue(3)">Three</button>
+            <button type="button" class="btn" onclick="setBedroomValue(4)">Four</button>
+            <button type="button" class="btn" onclick="setBedroomValue(5)">Five+</button>
+          </div>
+        </div>
+
+      <div class="btn-group btn-group-lg house-details rooms">
+          <div class="room-header"
+            <h4>Bathrooms</h4>
+          </div>
+
+        <input type="hidden" id="bathroom-value" value="" name="booking[bathroom]"/>
+        <div class="house-buttons btn-group">
+          <button type="button" class="btn btn-success" onclick="setBathroomValue(1)">One</button>
+          <button type="button" class="btn" onclick="setBathroomValue(2)">Two</button>
+          <button type="button" class="btn" onclick="setBathroomValue(3)">Three+</button>
+        </div>
+      </div>
+
+      <div class="btn-group btn-group-lg house-details" id="extras">
+          <div class="room-header">
+            <h4>Extras</h4>
+          </div>
+        <div id="house-extras">
+
+          <input type="hidden" id="extras-value" value="" name="booking[extras]"/>
+          <div class="house-buttons btn-group">
+            <button type="button" class="btn" onclick="setExtrasValue(1)">Fridge</button>
+            <button type="button" class="btn" onclick="setExtrasValue(2)">Oven</button>
+            <button type="button" class="btn" onclick="setExtrasValue(Inside Cabinets)">Inside Cabinets</button>
+          </div>
+          <div class="house-buttons btn-group">
+            <button type="button" class="btn" onclick="setExtrasValue(Interior Windows)">Interior Windows</button>
+            <button type="button" class="btn" onclick="setExtrasValue(Interior Walls)">Interior Walls</button>
+          </div>
+        </div>
+      </div>
+
+      <%#= f.label :needs_supplies %>
+      <%#= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><!-- <br /><br /> -->
 
       <%= f.label :hours %>
       <%= f.select :hours, (0..12), :as => :booking["hours"] %><br /><br />
 
-      <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-block btn-primary btn-cta" %>
+      <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
   </div>
 
   <div id="contact-info" style="display:none;">
@@ -38,7 +85,7 @@
         <%= label_tag :phone %>
         <%= builder.text_field :phone, :as => :customer["phone"] %><br />
 
-        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-block btn-primary btn-cta" %>
+        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-success btn-block" %>
 
     <% end %>  
   </div> 
@@ -48,10 +95,10 @@
       <%= f.label :time %>
       <%= f.text_field :time, :id => "schedule-time", :as => :booking["time"] %><br /><br />
 
-      <%= link_to "Next", '#payment-info', :id => "schedule-time-complete", :class => "btn btn-block btn-primary btn-cta" %>
+      <%= link_to "Next", '#payment-info', :id => "schedule-time-complete", :class => "btn btn-success btn-block" %>
   </div>
 
-  <div id="payment-info" style="display:block;">
+  <div id="payment-info" style="display:none;">
     <h1>Payment info</h1>
 
       <%= label_tag :card_number, "Credit Card Number" %>
@@ -65,7 +112,7 @@
       <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
 
       <div style="display:none;">
-      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-block btn-primary btn-cta" %>
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
       </div>
 
   </div>
