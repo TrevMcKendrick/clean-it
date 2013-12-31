@@ -49,3 +49,31 @@ a.btn {
 #house-extras .house-buttons .btn-group {
   padding: 5px;
 }
+
+#the_city input[type="text"] {
+  width: 86px;
+}
+
+#the_state input[type="text"] {
+  width: 40px;
+}
+
+#zipcode {
+  width: 55px;
+}
+
+.row .address [id="the_city"] {
+  margin-right: 20px;
+}
+
+.row .address [id="state"] {
+
+}
+
+.row .address [id="the_zipcode"] {
+
+}
+
+
+
+

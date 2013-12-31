@@ -19,13 +19,13 @@
               <h4>Bedrooms</h4>
             </div>
           
-          <input type="hidden" id="bedroom-value" value="" name="booking[bedroom]"/>
+          <input type="hidden" id="bedroom-value" value="1 bedroom" name="booking[job][bedroom]"/>
           <div class="house-buttons btn-group bedroom roomcount">
-            <button type="button" class="btn btn-success" onclick="setBedroomValue(1)">One</button>
-            <button type="button" class="btn" onclick="setBedroomValue(2)">Two</button>
-            <button type="button" class="btn" onclick="setBedroomValue(3)">Three</button>
-            <button type="button" class="btn" onclick="setBedroomValue(4)">Four</button>
-            <button type="button" class="btn" onclick="setBedroomValue(5)">Five+</button>
+            <button type="button" class="btn btn-success" onclick='setBedroomValue("1 bedroom")'>One</button>
+            <button type="button" class="btn" onclick='setBedroomValue("2 bedrooms")'>Two</button>
+            <button type="button" class="btn" onclick='setBedroomValue("3 bedrooms")'>Three</button>
+            <button type="button" class="btn" onclick='setBedroomValue("4 bedrooms")'>Four</button>
+            <button type="button" class="btn" onclick='setBedroomValue("5+ bedrooms")'>Five+</button>
           </div>
         </div>
 
@@ -34,11 +34,11 @@
             <h4>Bathrooms</h4>
           </div>
 
-        <input type="hidden" id="bathroom-value" value="" name="booking[bathroom]"/>
+        <input type="hidden" id="bathroom-value" value="1 bathroom" name="booking[job][bathroom]"/>
         <div class="house-buttons btn-group">
-          <button type="button" class="btn btn-success" onclick="setBathroomValue(1)">One</button>
-          <button type="button" class="btn" onclick="setBathroomValue(2)">Two</button>
-          <button type="button" class="btn" onclick="setBathroomValue(3)">Three+</button>
+          <button type="button" class="btn btn-success" onclick='setBathroomValue("1 bathroom)'>One</button>
+          <button type="button" class="btn" onclick='setBathroomValue("2 bathrooms)'>Two</button>
+          <button type="button" class="btn" onclick='setBathroomValue("3+ bathrooms)'>Three+</button>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
           </div>
         <div id="house-extras">
 
-          <input type="hidden" id="extras-value" value="" name="booking[extras]"/>
+          <input type="hidden" id="extras-value" value="" name="booking[job][extras]"/>
           <div class="house-buttons btn-group">
             <button type="button" class="btn" onclick='setExtrasValue("Fridge")'>Fridge</button>
             <button type="button" class="btn" onclick='setExtrasValue("Oven")'>Oven</button>
@@ -71,14 +71,27 @@
   </div>
 
   <div id="contact-info" style="display:none;">
+    <div id>
     <%= f.fields_for :customer do |builder| %> 
       <h1>Contact Info</h1>
         <%= label_tag :name %>
         <%= builder.text_field :name, :as => :customer["name"] %><br />
 
         <%= label_tag :address %>
-        <%= builder.text_field :address, :as => :customer["address"] %><br />
+        <%= builder.text_field :address, :as => :customer["address"], :id => "street_address", :placeholder => "Street address" %><br />
 
+        <div class="row address">
+        <div id="the_city" class="span1">
+          <%= builder.text_field :city, :as => :customer["city"], :id => "city", :placeholder => "City" %><br /> 
+        </div>
+        <div id="the_state" class="span1">
+          <%= builder.text_field :state, :as => :customer["state"], :id => "state", :placeholder => "State" %><br />
+        </div>
+        <div id="the_zipcode" class="span1">
+          <%= builder.text_field :zipcode, :as => :customer["zipcode"], :id => "zipcode", :placeholder => "Zipcode" %><br />
+        </div>
+         </div>    
+        
         <%= label_tag :email %>
         <%= builder.text_field :email, :as => :customer["email"] %><br />
 

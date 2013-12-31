@@ -24,13 +24,23 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    binding.pry
-    @booking = Booking.new(booking_params)
-    @customer = @booking.create_customer(customer_params[:customer])
+        
+    @booking = Booking.create(booking_params)
+    
+    jobs = booking_job_params[:job][:extras].split(",")
+
+    jobs << booking_job_params[:job][:bedroom]
+    jobs << booking_job_params[:job][:bathroom]
+    
+    create_booking_job_instances_from_array(jobs, @booking)
+    
+    @customer = @booking.build_customer(customer_params[:customer])
 
     stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank")
     @customer.stripe_id = stripe_customer_object.id
     @customer.save
+    binding.pry
+
 
     begin
       charge = Stripe::Charge.create(
@@ -88,7 +98,21 @@ class BookingsController < ApplicationController
       params.require(:booking).permit(:time, :needs_supplies, :hours)
     end
 
+    def booking_job_params
+      params.require(:booking).permit(job: [:bedroom, :bathroom, :extras])
+    end
+
     def customer_params
       params.require(:booking).permit(customer: [:name, :address, :email, :phone])
+    end
+
+    def create_booking_job_instances_from_array(array, booking)
+      array.each do |element|
+        @booking_job = booking.booking_jobs.create
+        job = Job.find_by name: element
+        @booking_job.job_id = job.id
+        @booking_job.booking_id = booking.id
+        @booking_job.save
+      end
     end
 end

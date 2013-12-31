@@ -28,36 +28,36 @@ $(document).ready(function() {
   });
  
  // // BEGIN STRIPE //
- //    var stripeResponseHandler = function(status, response) {
- //      var $form = $('#cleaning-form');
+    // var stripeResponseHandler = function(status, response) {
+    //   var $form = $('#cleaning-form');
  
- //      if (response.error) {
- //        // Show the errors on the form
- //        $form.find('.payment-errors').text(response.error.message);
- //        $form.find('button').prop('disabled', false);
- //      } else {
- //        // token contains id, last4, and card type
- //        var token = response.id;
- //        // Insert the token into the form so it gets submitted to the server
- //        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
- //        // and re-submit
- //        $form.get(0).submit();
- //      }
- //    };
+    //   if (response.error) {
+    //     // Show the errors on the form
+    //     $form.find('.payment-errors').text(response.error.message);
+    //     $form.find('button').prop('disabled', false);
+    //   } else {
+    //     // token contains id, last4, and card type
+    //     var token = response.id;
+    //     // Insert the token into the form so it gets submitted to the server
+    //     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    //     // and re-submit
+    //     $form.get(0).submit();
+    //   }
+    // };
  
- //    $(function($) {
- //      $('#cleaning-form').submit(function(e) {
- //        var $form = $(this);
+    // $(function($) {
+    //   $('#cleaning-form').submit(function(e) {
+    //     var $form = $(this);
  
- //        // Disable the submit button to prevent repeated clicks
- //        $form.find('button').prop('disabled', true);
+    //     // Disable the submit button to prevent repeated clicks
+    //     $form.find('button').prop('disabled', true);
  
- //        Stripe.createToken($form, stripeResponseHandler);
+    //     Stripe.createToken($form, stripeResponseHandler);
  
- //        // Prevent the form from submitting with the default action
- //        return false;
- //      });
- //    });
+    //     // Prevent the form from submitting with the default action
+    //     return false;
+    //   });
+    // });
  //  // END STRIPE //
 
   // BEGIN JOB BUTTONS //
@@ -94,12 +94,10 @@ function setBathroomValue(rooms)
 var extrasValues = [];
 function setExtrasValue(job) { 
       if(extrasValues.indexOf(job) > -1) {
-        // remove that element from the array
         var index = extrasValues.indexOf(job);
         extrasValues.splice(index, 1);
       } 
       else {
-        // add that element to the array
         extrasValues.push(job)
       }
       document.getElementById('extras-value').value = extrasValues;
@@ -107,3 +105,44 @@ function setExtrasValue(job) {
 
 
   // END SET ROOM AND VALUES TO HIDDEN FIELDS //    
+
+//START GOOGLE AUTOCOMPLETE ADDRESS FIELD//
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+ function initialize() {
+
+  var input = document.getElementById('street_address');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                fillInAddress();
+
+  });
+
+  function fillInAddress() {
+
+    var place = autocomplete.getPlace();
+
+    var street_number = place.address_components[0].short_name;
+    var street_name = place.address_components[1].short_name;
+    var city = place.address_components[2].short_name;
+    var state = place.address_components[4].short_name;
+    var zipcode = place.address_components[6].short_name;
+    var address = street_number + " " + street_name
+
+    document.getElementById('street_address').value = street_address;
+    document.getElementById('city').value = city;
+    document.getElementById('state').value = state;
+    document.getElementById('zipcode').value = zipcode;
+
+    //hack because google autocomplete listens to blur event and refills autocomplete//
+    var street_address = $("#street_address");
+    street_address.blur();   
+    setTimeout(function(){
+      street_address.val(address)
+    },0);
+
+  }
+
+}
+//END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
