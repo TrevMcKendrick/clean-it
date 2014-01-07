@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div id="booking-details" style="display:block;">
+  <div id="booking-details" style="display:none;">
     <h1>Customize Your Cleaning</h1>
         <div class="btn-group btn-group-lg house-details rooms">
             <div class="room-header">
@@ -70,7 +70,7 @@
       <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
   </div>
 
-  <div id="contact-info" style="display:none;">
+  <div id="contact-info" style="display:block;">
     <div id>
     <%= f.fields_for :customer do |builder| %> 
       <h1>Contact Info</h1>
