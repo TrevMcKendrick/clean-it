@@ -39,7 +39,6 @@ class BookingsController < ApplicationController
     stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank")
     @customer.stripe_id = stripe_customer_object.id
     @customer.save
-    binding.pry
 
 
     begin

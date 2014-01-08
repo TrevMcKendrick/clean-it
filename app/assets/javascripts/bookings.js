@@ -27,48 +27,49 @@ $(document).ready(function() {
     });
   });
  
- // // BEGIN STRIPE //
-    // var stripeResponseHandler = function(status, response) {
-    //   var $form = $('#cleaning-form');
+ // BEGIN STRIPE //
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#cleaning-form');
  
-    //   if (response.error) {
-    //     // Show the errors on the form
-    //     $form.find('.payment-errors').text(response.error.message);
-    //     $form.find('button').prop('disabled', false);
-    //   } else {
-    //     // token contains id, last4, and card type
-    //     var token = response.id;
-    //     // Insert the token into the form so it gets submitted to the server
-    //     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-    //     // and re-submit
-    //     $form.get(0).submit();
-    //   }
-    // };
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        $form.get(0).submit();
+      }
+    };
  
-    // $(function($) {
-    //   $('#cleaning-form').submit(function(e) {
-    //     var $form = $(this);
+    $(function($) {
+      $('#cleaning-form').submit(function(e) {
+        var $form = $(this);
  
-    //     // Disable the submit button to prevent repeated clicks
-    //     $form.find('button').prop('disabled', true);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
  
-    //     Stripe.createToken($form, stripeResponseHandler);
+        Stripe.createToken($form, stripeResponseHandler);
  
-    //     // Prevent the form from submitting with the default action
-    //     return false;
-    //   });
-    // });
- //  // END STRIPE //
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+  // END STRIPE //
 
   // BEGIN JOB BUTTONS //
     $('#extras button').click(function() {
       $(this).blur();
       $(this).toggleClass('btn-success');
+      updateHours();
     });
 
     $('.house-details.rooms button').click(function() {
       $('.house-details button').addClass('active').not(this).removeClass('active');
-        $(this).addClass('btn btn-success').siblings('.btn').removeClass('btn-success');
+      $(this).addClass('btn btn-success').siblings('.btn').removeClass('btn-success');
     });
   // END JOB BUTTONS //
 
@@ -78,16 +79,55 @@ $(document).ready(function() {
 
 });
 
+  // BEGIN UPDATE DROPDOWN HOURS //
+  function updateHours()
+  {
+    var extraCount = countExtras();
+    
+    var bedroomCount = document.getElementById('bedroom-value').value;
+    bedroomCount = parseFirstCharacter(bedroomCount);
+    bedroomCount = Number(bedroomCount);
+    
+    var bathroomCount = document.getElementById('bathroom-value').value;
+    bathroomCount = parseFirstCharacter(bathroomCount);
+    bathroomCount = Number(bathroomCount);
+
+    document.getElementById('booking_hours').value = extraCount + bedroomCount + bathroomCount;
+  }
+
+  function countExtras()
+  {
+    var extras = document.getElementById('extras-value').value;
+    if(extras == "") {
+      return 0;
+    } 
+    else {
+      return extras.split(",").length;
+    }
+    
+  }
+
+
+    function parseFirstCharacter(string)
+  {
+    return string.charAt(0);
+  }
+
+  // END UPDATE DROPDOWN HOURS //
+
+
 
   // BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
 function setBedroomValue(rooms)
     {
       document.getElementById('bedroom-value').value = rooms;
+      updateHours();
     }
 
 function setBathroomValue(rooms)
     {
       document.getElementById('bathroom-value').value = rooms;
+      updateHours();
     }
 
 // global variable no no
@@ -146,3 +186,6 @@ function setExtrasValue(job) {
 
 }
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
+
+
+

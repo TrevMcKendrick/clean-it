@@ -3,22 +3,43 @@
 [class*="span"].bordered {
   border-style:solid;
   border-width:1px;
-  padding: 5px 150px;
   background-color: #F8F8FF;
-  margin-top: 15px;
+  margin: 0 auto;
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 5px 5px 25px #888888;
+  margin-top: 10px;
+  padding: 0px 10px;
 }
 
 .house-details {
   border-style:solid;
   border-width:1px;
+  border-radius:5px;
+  border-color: #b6b6b6;
   padding: 5px;
   background-color: #F8F8FF;
   margin-top: 15px;
+  background-color: #e4e4e4;
 }
 
-.house-details .room-header {
+.house-details .header {
   float:left;
   font-size: 25px;
+}
+
+.header h4 {
+  font-weight: lighter;
+  line-height: 10px;  
+}
+
+.header h1 {
+  font-weight: lighter;
+  text-align: center;
+}
+
+.hours {
+  text-align: right;
 }
 
 .house-extras {
@@ -37,9 +58,14 @@ a.btn {
   padding: 15px;
   font-size: 25px;
   color: white;
+  margin-top: 15px;
   &:visited {
     color: white;
   }
+}
+
+.btn-number {
+  width: 60px;
 }
 
 #house-extras {
@@ -62,6 +88,11 @@ a.btn {
   width: 55px;
 }
 
+#booking_hours {
+  margin-left: 15px;
+  width: 100px;
+}
+
 .row .address [id="the_city"] {
   margin-right: 20px;
 }
@@ -73,7 +104,4 @@ a.btn {
 .row .address [id="the_zipcode"] {
 
 }
-
-
-
 

@@ -13,37 +13,40 @@
   <% end %>
 
   <div id="booking-details" style="display:none;">
-    <h1>Customize Your Cleaning</h1>
+    <div class="header">
+      <h1>Customize Your Cleaning</h1>
+    </div>
+        
         <div class="btn-group btn-group-lg house-details rooms">
-            <div class="room-header">
+            <div class="header">
               <h4>Bedrooms</h4>
             </div>
           
           <input type="hidden" id="bedroom-value" value="1 bedroom" name="booking[job][bedroom]"/>
           <div class="house-buttons btn-group bedroom roomcount">
-            <button type="button" class="btn btn-success" onclick='setBedroomValue("1 bedroom")'>One</button>
-            <button type="button" class="btn" onclick='setBedroomValue("2 bedrooms")'>Two</button>
-            <button type="button" class="btn" onclick='setBedroomValue("3 bedrooms")'>Three</button>
-            <button type="button" class="btn" onclick='setBedroomValue("4 bedrooms")'>Four</button>
-            <button type="button" class="btn" onclick='setBedroomValue("5+ bedrooms")'>Five+</button>
+            <button type="button" class="btn btn-success btn-number" onclick='setBedroomValue("1 bedroom")'>1</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("2 bedrooms")'>2</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("3 bedrooms")'>3</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("4 bedrooms")'>4</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("5+ bedrooms")'>5+</button>
           </div>
         </div>
 
       <div class="btn-group btn-group-lg house-details rooms">
-          <div class="room-header"
+          <div class="header">
             <h4>Bathrooms</h4>
           </div>
 
         <input type="hidden" id="bathroom-value" value="1 bathroom" name="booking[job][bathroom]"/>
         <div class="house-buttons btn-group">
-          <button type="button" class="btn btn-success" onclick='setBathroomValue("1 bathroom)'>One</button>
-          <button type="button" class="btn" onclick='setBathroomValue("2 bathrooms)'>Two</button>
-          <button type="button" class="btn" onclick='setBathroomValue("3+ bathrooms)'>Three+</button>
+          <button type="button" class="btn btn-success btn-number" onclick='setBathroomValue("1 bathroom")'>1</button>
+          <button type="button" class="btn btn-number" onclick='setBathroomValue("2 bathrooms")'>2</button>
+          <button type="button" class="btn btn-number" onclick='setBathroomValue("3+ bathrooms")'>3+</button>
         </div>
       </div>
 
       <div class="btn-group btn-group-lg house-details" id="extras">
-          <div class="room-header">
+          <div class="header">
             <h4>Extras</h4>
           </div>
         <div id="house-extras">
@@ -61,21 +64,34 @@
         </div>
       </div>
 
-      <%#= f.label :needs_supplies %>
-      <%#= f.check_box :needs_supplies, :as => :booking["needs_supplies"] %><!-- <br /><br /> -->
+    <div class="house-details btn-group hours">  
+      <div class="header">
+        <h4>Recommended Hours (2 minimum)</h4>
+      </div>
+      <div id="hour-dropdown">
+        <%= f.select :hours, (2..13), :as => :booking["hours"] %>
+      </div>
+    </div>
 
-      <%= f.label :hours %>
-      <%= f.select :hours, (0..12), :as => :booking["hours"] %><br /><br />
 
-      <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
+
+      <%= link_to "Next", 'javascript:void(0)', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
   </div>
 
   <div id="contact-info" style="display:block;">
     <div id>
     <%= f.fields_for :customer do |builder| %> 
-      <h1>Contact Info</h1>
-        <%= label_tag :name %>
-        <%= builder.text_field :name, :as => :customer["name"] %><br />
+      <div class="header">
+        <h1>Contact Info</h1>
+      </div>
+        
+        <div class="house-details">
+          <div class="header">
+              <h4>Name</h4>
+          </div>
+
+          <%= builder.text_field :name, :as => :customer["name"] %><br />
+        </div>
 
         <%= label_tag :address %>
         <%= builder.text_field :address, :as => :customer["address"], :id => "street_address", :placeholder => "Street address" %><br />
@@ -98,13 +114,18 @@
         <%= label_tag :phone %>
         <%= builder.text_field :phone, :as => :customer["phone"] %><br />
 
+
         <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-success btn-block" %>
 
     <% end %>  
-  </div> 
+    </div> 
+  </div>
 
   <div id="schedule-time" style="display:none;">
-    <h1>Schedule a time</h1>
+    <div class="header">
+      <h1>Schedule a time</h1>
+    </div>
+
       <%= f.label :time %>
       <%= f.text_field :time, :id => "schedule-time", :as => :booking["time"] %><br /><br />
 
@@ -112,7 +133,9 @@
   </div>
 
   <div id="payment-info" style="display:none;">
-    <h1>Payment info</h1>
+    <div class="header">
+      <h1>Payment info</h1>
+    </div>
 
       <%= label_tag :card_number, "Credit Card Number" %>
       <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
@@ -131,7 +154,7 @@
   </div>
 
 
-  <div class="actions" id="finalize-booking" style="display:block;">
+  <div class="actions" id="finalize-booking" style="display:none;">
     <%= f.submit %>
   </div>
 
