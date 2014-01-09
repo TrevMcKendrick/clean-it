@@ -28,13 +28,39 @@
   font-size: 25px;
 }
 
+.date_selector {
+  margin-top: 5px;
+}
+
 .header h4 {
   font-weight: lighter;
   line-height: 10px;  
+  padding-left: 10px;
+}
+
+#card_year {
+  margin-top: 5px;
+}
+
+.expiration_date h4 {
+  line-height: 45px;
+}
+
+.extras h4 {
+  line-height: 60px;
+}
+
+.cleaning_address h4 {
+  line-height: 75px;
 }
 
 .header h1 {
   font-weight: lighter;
+  text-align: center;
+}
+
+.header h5 {
+  font-weight: 500;
   text-align: center;
 }
 
@@ -50,8 +76,25 @@
   margin-top: 15px;
 }
 
-.house-buttons {
+.form-group-field {
   text-align: right;
+}
+
+.interior {
+  margin-top: 5px;
+}
+
+.address_field {
+  margin-top: 5px;
+}
+
+#cleaning_address {
+  line-height: 30px;
+}
+
+
+#the_state {
+  float: right;
 }
 
 a.btn {
@@ -72,7 +115,7 @@ a.btn {
   padding: 10px;
 }
 
-#house-extras .house-buttons .btn-group {
+#house-extras .form-group-field .btn-group {
   padding: 5px;
 }
 
@@ -105,3 +148,11 @@ a.btn {
 
 }
 
+#street_address {
+  width: 270px;
+}
+
+#finalize-booking-button {
+    padding: 15px;
+    font-size: 25px;
+}

@@ -23,7 +23,7 @@
             </div>
           
           <input type="hidden" id="bedroom-value" value="1 bedroom" name="booking[job][bedroom]"/>
-          <div class="house-buttons btn-group bedroom roomcount">
+          <div class="form-group-field btn-group bedroom roomcount">
             <button type="button" class="btn btn-success btn-number" onclick='setBedroomValue("1 bedroom")'>1</button>
             <button type="button" class="btn btn-number" onclick='setBedroomValue("2 bedrooms")'>2</button>
             <button type="button" class="btn btn-number" onclick='setBedroomValue("3 bedrooms")'>3</button>
@@ -38,7 +38,7 @@
           </div>
 
         <input type="hidden" id="bathroom-value" value="1 bathroom" name="booking[job][bathroom]"/>
-        <div class="house-buttons btn-group">
+        <div class="form-group-field btn-group">
           <button type="button" class="btn btn-success btn-number" onclick='setBathroomValue("1 bathroom")'>1</button>
           <button type="button" class="btn btn-number" onclick='setBathroomValue("2 bathrooms")'>2</button>
           <button type="button" class="btn btn-number" onclick='setBathroomValue("3+ bathrooms")'>3+</button>
@@ -46,20 +46,20 @@
       </div>
 
       <div class="btn-group btn-group-lg house-details" id="extras">
-          <div class="header">
+          <div class="header extras">
             <h4>Extras</h4>
           </div>
         <div id="house-extras">
 
           <input type="hidden" id="extras-value" value="" name="booking[job][extras]"/>
-          <div class="house-buttons btn-group">
+          <div class="form-group-field btn-group">
             <button type="button" class="btn" onclick='setExtrasValue("Fridge")'>Fridge</button>
             <button type="button" class="btn" onclick='setExtrasValue("Oven")'>Oven</button>
             <button type="button" class="btn" onclick='setExtrasValue("Inside Cabinets")'>Inside Cabinets</button>
           </div>
-          <div class="house-buttons btn-group">
-            <button type="button" class="btn" onclick='setExtrasValue("Interior Windows")'>Interior Windows</button>
-            <button type="button" class="btn" onclick='setExtrasValue("Interior Walls")'>Interior Walls</button>
+          <div class="form-group-field btn-group">
+            <button type="button" class="btn interior" onclick='setExtrasValue("Interior Windows")'>Interior Windows</button>
+            <button type="button" class="btn interior" onclick='setExtrasValue("Interior Walls")'>Interior Walls</button>
           </div>
         </div>
       </div>
@@ -78,41 +78,64 @@
       <%= link_to "Next", 'javascript:void(0)', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
   </div>
 
-  <div id="contact-info" style="display:block;">
+  <div id="contact-info" style="display:none;">
     <div id>
     <%= f.fields_for :customer do |builder| %> 
       <div class="header">
         <h1>Contact Info</h1>
       </div>
         
-        <div class="house-details">
+        <div class="house-details form-group-field">
           <div class="header">
               <h4>Name</h4>
           </div>
-
-          <%= builder.text_field :name, :as => :customer["name"] %><br />
+          <%= builder.text_field :name, :as => :customer["name"], :placeholder => "Full name"  %><br />
         </div>
 
-        <%= label_tag :address %>
-        <%= builder.text_field :address, :as => :customer["address"], :id => "street_address", :placeholder => "Street address" %><br />
+        <div class="house-details form-group-field">
+          <div class="header cleaning_address">
+            <h4>Cleaning Address</h4>
+          </div>
 
-        <div class="row address">
-        <div id="the_city" class="span1">
-          <%= builder.text_field :city, :as => :customer["city"], :id => "city", :placeholder => "City" %><br /> 
-        </div>
-        <div id="the_state" class="span1">
-          <%= builder.text_field :state, :as => :customer["state"], :id => "state", :placeholder => "State" %><br />
-        </div>
-        <div id="the_zipcode" class="span1">
-          <%= builder.text_field :zipcode, :as => :customer["zipcode"], :id => "zipcode", :placeholder => "Zipcode" %><br />
-        </div>
-         </div>    
+            <div class="address_fields">
+            <%= builder.text_field :address, :as => :customer["address"], :id => "street_address", :placeholder => "Street address" %><br />
+              
+              <div id="the_state" class="address_field">
+                <%= builder.text_field :state, :as => :customer["state"], :id => "state", :placeholder => "State" %><br />
+              </div>
+
+              <div id="the_city" class="address_field">
+                <%= builder.text_field :city, :as => :customer["city"], :id => "city", :placeholder => "City" %><br /> 
+              </div>
+
+              <div id="the_zipcode" class="address_field">
+                <%= builder.text_field :zipcode, :as => :customer["zipcode"], :id => "zipcode", :placeholder => "Zipcode" %><br />
+              </div>
+            </div>
+
+        </div>    
         
-        <%= label_tag :email %>
-        <%= builder.text_field :email, :as => :customer["email"] %><br />
+        <br>
+          <div id="test">
+        </div>
 
-        <%= label_tag :phone %>
-        <%= builder.text_field :phone, :as => :customer["phone"] %><br />
+        <div class="header">
+          <h5>We'll only contact you about your cleaning, promise :)</h5>
+        </div>
+        
+        <div class="house-details form-group-field">
+          <div class="header">
+            <h4>Email</h4>
+          </div>
+          <%= builder.text_field :email, :as => :customer["email"], :placeholder => "Email address" %><br />
+        </div>
+
+        <div class="house-details form-group-field">
+          <div class="header">
+            <h4>Phone</h4>
+          </div>
+          <%= builder.text_field :phone, :as => :customer["phone"], :placeholder => "(xxx) xxx-xxxx" %><br />
+        </div>
 
 
         <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-success btn-block" %>
@@ -137,25 +160,60 @@
       <h1>Payment info</h1>
     </div>
 
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
-
-      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
-
-      <%= label_tag :card_month, "Card Expiration" %>
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } } %>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
-
-      <div style="display:none;">
-      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
+    <div class="house-details form-group-field">
+      <div class="header">
+        <h4>Credit Card Number</h4>
       </div>
+      <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
+    </div>
+
+    <div class="house-details form-group-field">
+      <div class="header">
+        <h4>Card security code (CVC)</h4>
+      </div>
+      <%= text_field_tag :card_code, nil, name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
+    </div>
+
+    <div class="house-details form-group-field">
+      <div class="header expiration_date">
+        <h4>Expiration date</h4>
+      </div>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } }  %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
+    </div>
+
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
 
   </div>
+  <div id="finalize-booking" style="display:block;">
 
-
-  <div class="actions" id="finalize-booking" style="display:none;">
-    <%= f.submit %>
+  <div class="header">
+      <h1>Review order</h1>
   </div>
+  <div class="confirmations-details">
+      <h2>Appointment</h2>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-time" %></h3>
+
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-hours" %> of cleaning.</h3>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-bedrooms" %></h3>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-bathrooms" %></h3>
+      <h2>Plus we are cleaning:</h2>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-extras" %></h3>
+
+      <h2>Your info:</h2>
+      <h3>Name</h3>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-name" %></h3></h3>
+      <h3>Email</h3>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-email" %></h3></h3>
+      <h3>Phone</h3>
+      <h3><%= label_tag "Test", "Test", :id => "confirmation-phone" %></h3></h3>
+  </div>
+  
+
+  
+    <%= f.submit "Book cleaning", :class => "btn btn-success btn-block", :id => "finalize-booking-button" %>
+  </div>
+
+  
 
 <% end %>

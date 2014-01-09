@@ -16,7 +16,12 @@ $(document).ready(function() {
   $('#schedule-time-complete').click(function(event) {
       $("#schedule-time").css("display", "none");
       $("#payment-info").css("display", "block");
+  });
+
+   $('#payment-info-complete').click(function(event) {
+      $("#payment-info").css("display", "none");
       $("#finalize-booking").css("display", "block");
+      updateConfimrationPage()
   });
 
   $(function() {
@@ -107,7 +112,6 @@ $(document).ready(function() {
     
   }
 
-
     function parseFirstCharacter(string)
   {
     return string.charAt(0);
@@ -147,7 +151,7 @@ function setExtrasValue(job) {
   // END SET ROOM AND VALUES TO HIDDEN FIELDS //    
 
 //START GOOGLE AUTOCOMPLETE ADDRESS FIELD//
-  google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', updateConfimrationPage);
 
  function initialize() {
 
@@ -186,6 +190,30 @@ function setExtrasValue(job) {
 
 }
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
+
+//START UPDATE CONFIRMATION PAGE//
+function updateConfimrationPage()
+  {
+     // document.getElementById('confirmation-time').innerHTML = "Thursday at 5 PM";
+     // document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value;
+     // document.getElementById('confirmation-bedrooms').innerHTML = document.getElementById('bedroom-value').value;
+     // document.getElementById('confirmation-bathrooms').innerHTML = document.getElementById('bathroom-value').value;
+     // document.getElementById('confirmation-extras').innerHTML = document.getElementById('extras-value').value;
+     // document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_customer_name').value;
+     // document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_customer_email').value;
+     // document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_customer_phone').value;
+     
+
+     document.getElementById('confirmation-time').innerHTML = "Thursday at 5 PM";
+     document.getElementById('confirmation-hours').innerHTML = "7"
+     document.getElementById('confirmation-bedrooms').innerHTML = "3 bedrooms"
+     document.getElementById('confirmation-bathrooms').innerHTML = "2 bathrooms"
+     document.getElementById('confirmation-extras').innerHTML = "Interior Walls,Inside Cabinets,Oven,Fridge,Interior Windows"
+     document.getElementById('confirmation-name').innerHTML = "Trevor McKendrick"
+     document.getElementById('confirmation-email').innerHTML = "trevormckendrick@gmail.com"
+     document.getElementById('confirmation-phone').innerHTML = "626-244-4636"
+  }
+//END UPDATE CONFIRMATION PAGE//
 
 
 
