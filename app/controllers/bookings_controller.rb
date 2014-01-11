@@ -38,19 +38,23 @@ class BookingsController < ApplicationController
     
     create_booking_job_instances_from_array(jobs, @booking)
     
-    @customer = @booking.build_customer(customer_params[:customer])
+    @user = @booking.build_user(user_params[:user])
 
-    stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank_description")
-    @customer.stripe_id = stripe_customer_object.id
-    @customer.save
+    stripe_user_object = User.create_stripe_user(params[:stripeToken], "blank_description")
 
+    @user.stripe_id = stripe_user_object.id
+    @user.password = Devise.friendly_token.first(8)
+
+    @user.save
+    
+    # send email once mailer is implemented
+    # RegistrationMailer.welcome(user, generated_password).deliver
 
     begin
-      binding.pry
       charge = Stripe::Charge.create(
         :amount => @booking.price, # amount in cents, again
         :currency => "usd",
-        :customer => @customer.stripe_id,
+        :customer => @user.stripe_id,
       )
     rescue Stripe::CardError => e
       # The card has been declined
@@ -58,11 +62,12 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @booking }
+        #log in user
+        # sign_in(:user, @user)
+
+        format.html { redirect_to new_user_session_url, notice: 'Booking was successfully created.' }
       else
         format.html { render action: 'new' }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -106,8 +111,8 @@ class BookingsController < ApplicationController
       params.require(:booking).permit(job: [:bedroom, :bathroom, :extras])
     end
 
-    def customer_params
-      params.require(:booking).permit(customer: [:name, :address, :email, :phone])
+    def user_params
+      params.require(:booking).permit(user: [:name, :address, :email, :phone])
     end
 
     def create_booking_job_instances_from_array(array, booking)

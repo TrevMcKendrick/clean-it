@@ -1,7 +1,7 @@
 class Booking < ActiveRecord::Base
 
   belongs_to :worker
-  belongs_to :customer
+  belongs_to :user
  
   has_many :booking_jobs
   has_many :jobs, :through => :booking_jobs  

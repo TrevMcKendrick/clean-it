@@ -3,6 +3,15 @@
 <%= render "layouts/navbar" %>
 
 <body>
+  
+<!-- devise stuff -->
+<% if notice %>
+  <p class="alert alert-notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-error"><%= alert %></p>
+<% end %>
+<!-- end devise stuff -->
 
 <%= yield %>
 

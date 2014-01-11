@@ -25,7 +25,7 @@ $(document).ready(function() {
   });
 
   $(function() {
-    $( "#schedule-day" ).datepicker({
+    $( "#datepicker" ).datepicker({
       minDate: 0,
       showOtherMonths: true,
       selectOtherMonths: true
@@ -151,7 +151,7 @@ function setExtrasValue(job) {
   // END SET ROOM AND VALUES TO HIDDEN FIELDS //    
 
 //START GOOGLE AUTOCOMPLETE ADDRESS FIELD//
-  google.maps.event.addDomListener(window, 'load', updateConfimrationPage);
+  google.maps.event.addDomListener(window, 'load', initialize);
 
  function initialize() {
 
@@ -211,9 +211,9 @@ function updateConfimrationPage()
     document.getElementById('confirmation-extras').innerHTML = document.getElementById('extras-value').value;
     document.getElementById('confirmation-address').innerHTML = street_address;
     document.getElementById('confirmation-city-state-zip').innerHTML = city + ", " + state + " " + zipcode;
-    document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_customer_name').value;
-    document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_customer_email').value;
-    document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_customer_phone').value;
+    document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_user_name').value;
+    document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_user_email').value;
+    document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_user_phone').value;
     document.getElementById('confirmation-amount').innerHTML = "$" + finalPrice;
      
 
@@ -229,6 +229,4 @@ function updateConfimrationPage()
      // document.getElementById('confirmation-phone').innerHTML = "626-244-4636"
   }
 //END UPDATE CONFIRMATION PAGE//
-
-
 

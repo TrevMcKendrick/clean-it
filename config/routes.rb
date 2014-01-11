@@ -1,9 +1,7 @@
 CleanIt::Application.routes.draw do
-  resources :customers
+  devise_for :users
 
   resources :jobs
-
-  resources :workers
 
   resources :bookings, :path => "booking"
 
