@@ -194,24 +194,39 @@ function setExtrasValue(job) {
 //START UPDATE CONFIRMATION PAGE//
 function updateConfimrationPage()
   {
-     // document.getElementById('confirmation-time').innerHTML = "Thursday at 5 PM";
-     // document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value;
-     // document.getElementById('confirmation-bedrooms').innerHTML = document.getElementById('bedroom-value').value;
-     // document.getElementById('confirmation-bathrooms').innerHTML = document.getElementById('bathroom-value').value;
-     // document.getElementById('confirmation-extras').innerHTML = document.getElementById('extras-value').value;
-     // document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_customer_name').value;
-     // document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_customer_email').value;
-     // document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_customer_phone').value;
+    var street_address = document.getElementById('street_address').value;
+    var state = document.getElementById('state').value;
+    var city = document.getElementById('city').value;
+    var zipcode = document.getElementById('zipcode').value;
+
+    var bookingPrice = document.getElementById('booking_hours').value * gon.price;
+    var finalPrice = bookingPrice + gon.supplies_price;
+    
+    document.getElementById('booking-price').innerHTML = "$" + bookingPrice;
+    document.getElementById('supply-cost').innerHTML = "$" + gon.supplies_price;
+    document.getElementById('confirmation-time').innerHTML = "Mon Feb 10 2014 @ 9:30 AM";
+    document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value + " " + "hour cleaning" + " " + "($" + gon.price +  "/hour)";
+    document.getElementById('confirmation-bedrooms').innerHTML = document.getElementById('bedroom-value').value;
+    document.getElementById('confirmation-bathrooms').innerHTML = document.getElementById('bathroom-value').value;
+    document.getElementById('confirmation-extras').innerHTML = document.getElementById('extras-value').value;
+    document.getElementById('confirmation-address').innerHTML = street_address;
+    document.getElementById('confirmation-city-state-zip').innerHTML = city + ", " + state + " " + zipcode;
+    document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_customer_name').value;
+    document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_customer_email').value;
+    document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_customer_phone').value;
+    document.getElementById('confirmation-amount').innerHTML = "$" + finalPrice;
      
 
-     document.getElementById('confirmation-time').innerHTML = "Thursday at 5 PM";
-     document.getElementById('confirmation-hours').innerHTML = "7"
-     document.getElementById('confirmation-bedrooms').innerHTML = "3 bedrooms"
-     document.getElementById('confirmation-bathrooms').innerHTML = "2 bathrooms"
-     document.getElementById('confirmation-extras').innerHTML = "Interior Walls,Inside Cabinets,Oven,Fridge,Interior Windows"
-     document.getElementById('confirmation-name').innerHTML = "Trevor McKendrick"
-     document.getElementById('confirmation-email').innerHTML = "trevormckendrick@gmail.com"
-     document.getElementById('confirmation-phone').innerHTML = "626-244-4636"
+     // document.getElementById('confirmation-time').innerHTML = "Mon Feb 10 2014 @ 9:30 AM";
+     // document.getElementById('confirmation-hours').innerHTML = "7" + " " + "hour cleaning ($25/hour)";
+     // document.getElementById('confirmation-bedrooms').innerHTML = "3 bedrooms,"
+     // document.getElementById('confirmation-bathrooms').innerHTML = "2 bathrooms"
+     // document.getElementById('confirmation-extras').innerHTML = "Interior Walls,Inside Cabinets,Oven,Fridge"
+     // document.getElementById('confirmation-address').innerHTML = "856 Cedar Pine Court #20"
+     // document.getElementById('confirmation-city-state-zip').innerHTML = "Salt Lake City, UT 84106"
+     // document.getElementById('confirmation-name').innerHTML = "Trevor McKendrick"
+     // document.getElementById('confirmation-email').innerHTML = "trevormckendrick@gmail.com"
+     // document.getElementById('confirmation-phone').innerHTML = "626-244-4636"
   }
 //END UPDATE CONFIRMATION PAGE//
 

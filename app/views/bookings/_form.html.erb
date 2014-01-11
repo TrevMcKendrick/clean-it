@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div id="booking-details" style="display:none;">
+  <div id="booking-details" style="display:block;">
     <div class="header">
       <h1>Customize Your Cleaning</h1>
     </div>
@@ -185,28 +185,42 @@
       <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
 
   </div>
-  <div id="finalize-booking" style="display:block;">
+  <div id="finalize-booking" style="display:none;">
 
   <div class="header">
       <h1>Review order</h1>
   </div>
   <div class="confirmations-details">
-      <h2>Appointment</h2>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-time" %></h3>
+    <div class="confirmation">
+        <h3 id="confirmation-time"></h3>
+      <div class="time-container">
+        <h4 id="confirmation-hours"></h4>
+        <h4 id="booking-price" class="details"></h4>
+        <h4 id="confirmation-supplies">Supplies cost:</h4>
+        <h4 id="supply-cost" class="details">+$<%= supply_price %></h4>
+        <h4 id="confirmation-total">Total:</h4>
+        <h4 id="confirmation-amount"></h4>
+      </div>
+    </div>
 
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-hours" %> of cleaning.</h3>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-bedrooms" %></h3>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-bathrooms" %></h3>
-      <h2>Plus we are cleaning:</h2>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-extras" %></h3>
+    <div class="confirmation">
+      <h2 class="confirmation-header">Home Info</h2>
+      <h3 id="confirmation-address"></h3>
+      <h3 id="confirmation-city-state-zip"></h3>
 
-      <h2>Your info:</h2>
-      <h3>Name</h3>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-name" %></h3></h3>
-      <h3>Email</h3>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-email" %></h3></h3>
-      <h3>Phone</h3>
-      <h3><%= label_tag "Test", "Test", :id => "confirmation-phone" %></h3></h3>
+      <h3 id="confirmation-bedrooms"></h3>
+      <h3 id="confirmation-bathrooms"></h3>
+
+
+      <h3 id="confirmation-extras"></h3>
+    </div>
+
+    <div class="confirmation">
+      <h2 class="confirmation-header">Your Info</h2>
+      <h3 id="confirmation-name"  class="confirmation-contact-info"></h3>
+      <h3 id="confirmation-email" class="confirmation-contact-info"></h3>
+      <h3 id="confirmation-phone" class="confirmation-contact-info"></h3>
+    </div>
   </div>
   
 

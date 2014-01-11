@@ -23,6 +23,27 @@
   background-color: #e4e4e4;
 }
 
+.confirmation {
+  border-style:solid;
+  border-width:1px;
+  border-radius:5px;
+  border-color: #b6b6b6;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: #e4e4e4;
+}
+
+.confirmation-header {
+  border-style:solid;
+  border-width:1px;
+  border-radius:5px;
+  border-color: #b6b6b6;
+  padding: 1px;
+  margin-top: 15px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
 .house-details .header {
   float:left;
   font-size: 25px;
@@ -36,6 +57,126 @@
   font-weight: lighter;
   line-height: 10px;  
   padding-left: 10px;
+}
+
+.confirmation h2 {
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+#confirmation-time {
+  text-align: center;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+#confirmation-address {
+  text-align: center;
+  font-size: 24px;
+  font-weight: lighter;
+  margin-bottom: 0px;
+  height: 33px;
+}
+
+.confirmation-contact-info {
+  text-align: center;
+  font-size: 24px;
+  font-weight: lighter;
+  margin-bottom: 0px;
+  height: 33px;
+}
+
+.confirmations-details {
+  margin-bottom: 10px;
+}
+
+#confirmation-city-state-zip {
+  text-align: center;
+  font-size: 24px;
+  font-weight: lighter;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.time-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.address-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#confirmation-hours {
+  font-weight: lighter;
+  float:left;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+#confirmation-bedrooms {
+  font-weight: lighter;
+  float:left;
+  width:115px;
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 120px;
+  height: 10px;
+}
+
+#confirmation-bathrooms {
+  font-weight: lighter;
+  float:left;
+  margin: 0px;
+  font-size: 18px;
+  height: 10px;
+}
+
+#confirmation-supplies {
+  font-weight: lighter;
+  float:left;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#confirmation-total {
+  /*font-weight: lighter;*/
+  float:left;
+  margin-top: 0px;
+}
+
+#confirmation-amount {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+#extras-header {
+  text-align: center;
+  font-size: 22px;
+  font-weight: lighter;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+#confirmation-extras {
+  font-size: 18px;
+  text-align: center;
+  font-weight: lighter;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  height: 40px;
+}
+
+.details {
+  font-weight: lighter;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
 }
 
 #card_year {

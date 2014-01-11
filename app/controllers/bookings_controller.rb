@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_prices
 
   # GET /bookings
   # GET /bookings.json
@@ -25,8 +26,11 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
         
-    @booking = Booking.create(booking_params)
-    
+    @booking = Booking.new(booking_params)
+
+    @booking.price = @booking.calculate_price(params[:booking][:hours].to_i)
+    @booking.save
+
     jobs = booking_job_params[:job][:extras].split(",")
 
     jobs << booking_job_params[:job][:bedroom]
@@ -36,14 +40,15 @@ class BookingsController < ApplicationController
     
     @customer = @booking.build_customer(customer_params[:customer])
 
-    stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank")
+    stripe_customer_object = Customer.create_stripe_customer(params[:stripeToken], "blank_description")
     @customer.stripe_id = stripe_customer_object.id
     @customer.save
 
 
     begin
+      binding.pry
       charge = Stripe::Charge.create(
-        :amount => 1000, # amount in cents, again
+        :amount => @booking.price, # amount in cents, again
         :currency => "usd",
         :customer => @customer.stripe_id,
       )
@@ -94,7 +99,7 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:time, :needs_supplies, :hours)
+      params.require(:booking).permit(:time, :needs_supplies, :hours, :price)
     end
 
     def booking_job_params
@@ -114,4 +119,10 @@ class BookingsController < ApplicationController
         @booking_job.save
       end
     end
+
+    def set_prices
+      gon.price = HOURLY_PRICE
+      gon.supplies_price = SUPPLIES_PRICE
+    end
+
 end
