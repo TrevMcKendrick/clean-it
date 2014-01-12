@@ -62,10 +62,9 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        #log in user
-        # sign_in(:user, @user)
+        sign_in(:user, @user)
 
-        format.html { redirect_to new_user_session_url, notice: 'Booking was successfully created.' }
+        format.html { redirect_to edit_user_password_url, notice: 'Booking was successfully created.' }
       else
         format.html { render action: 'new' }
       end

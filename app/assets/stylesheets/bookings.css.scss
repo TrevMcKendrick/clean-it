@@ -23,6 +23,17 @@
   background-color: #e4e4e4;
 }
 
+.sign-in-form-details {
+  border-style:solid;
+  border-width:1px;
+  border-radius:5px;
+  border-color: #b6b6b6;
+  background-color: #F8F8FF;
+  margin-top: 15px;
+  background-color: #e4e4e4;
+  width: 100%;
+}
+
 /*begin datepicker styling*/
 
 .ui-datepicker-prev {
@@ -49,6 +60,36 @@
   padding: 5px;
   margin-top: 15px;
   background-color: #e4e4e4;
+}
+
+.sign-in-field {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-sign-in {
+  margin-top: 10px;
+}
+
+#sign-in-form {
+
+}
+
+#new_user {
+  /*padding: 5px;*/
+}
+
+#sign-in-fields-container {
+  padding-left: 5px;
+  width: 98%;
+}
+
+#sign-in-form-container {
+  width: 300px;
+}
+
+.user_email_signin {
+  width: 276px;
 }
 
 .confirmation-header {
