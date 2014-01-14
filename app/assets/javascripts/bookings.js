@@ -98,6 +98,7 @@ $(document).ready(function() {
     bathroomCount = Number(bathroomCount);
 
     document.getElementById('booking_hours').value = extraCount + bedroomCount + bathroomCount;
+    document.getElementById('recommended_hours').innerHTML = extraCount + bedroomCount + bathroomCount;
   }
 
   function countExtras()
@@ -154,7 +155,10 @@ function setExtrasValue(job) {
   google.maps.event.addDomListener(window, 'load', initialize);
 
  function initialize() {
-
+  //unrelated to Google: sets recommended hours value that user sees
+  document.getElementById('recommended_hours').innerHTML = 2;
+  //end unrelated
+  
   var input = document.getElementById('street_address');
   var autocomplete = new google.maps.places.Autocomplete(input);
 

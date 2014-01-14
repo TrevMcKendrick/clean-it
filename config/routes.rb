@@ -1,7 +1,7 @@
 CleanIt::Application.routes.draw do
   devise_for :users
 
-  resources :jobs
+  get 'user' => "users#show", :path => "customer/dashboard"
 
   resources :bookings, :path => "booking"
 

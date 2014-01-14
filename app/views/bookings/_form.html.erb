@@ -66,7 +66,8 @@
 
     <div class="house-details btn-group hours">  
       <div class="header">
-        <h4>Recommended Hours (2 minimum)</h4>
+        <h4>Number of hours to Book (2 minimum)</h4>
+        <h6 id="recommended_hours_label">We recommend <strong><span id="recommended_hours">2</span></strong> hours based on the size of your place.</h6>
       </div>
       <div id="hour-dropdown">
         <%= f.select :hours, (2..13), :as => :booking["hours"] %>

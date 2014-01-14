@@ -34,6 +34,10 @@
   width: 100%;
 }
 
+.new-password {
+  margin-bottom: 20px;
+}
+
 /*begin datepicker styling*/
 
 .ui-datepicker-prev {
@@ -47,8 +51,6 @@
 .ui-datepicker-title {
   background-color: green;
 }
-
-
 
 /*end datepicker styling*/
 
@@ -71,12 +73,8 @@
   margin-top: 10px;
 }
 
-#sign-in-form {
-
-}
-
-#new_user {
-  /*padding: 5px;*/
+#recommended_hours_label {
+  font-weight: lighter;
 }
 
 #sign-in-fields-container {
@@ -265,7 +263,7 @@
 }
 
 .hours {
-  text-align: right;
+  /*text-align: right;*/
 }
 
 .house-extras {
@@ -334,6 +332,10 @@ a.btn {
 #booking_hours {
   margin-left: 15px;
   width: 100px;
+}
+
+#hour-dropdown {
+  height: 50px;
 }
 
 .row .address [id="the_city"] {

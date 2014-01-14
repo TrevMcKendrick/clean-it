@@ -3,3 +3,5 @@ STRIPE_PUBLIC_KEY = "pk_test_D8QJoVNlDzFFBB3Mx5xC449q"
 
 HOURLY_PRICE = 30
 SUPPLIES_PRICE = 5
+
+DEFAULT_MAILER_SENDER = "no-reply@sandbox2071.mailgun.org"

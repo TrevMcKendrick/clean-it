@@ -46,9 +46,6 @@ class BookingsController < ApplicationController
     @user.password = Devise.friendly_token.first(8)
 
     @user.save
-    
-    # send email once mailer is implemented
-    # RegistrationMailer.welcome(user, generated_password).deliver
 
     begin
       charge = Stripe::Charge.create(
@@ -56,15 +53,16 @@ class BookingsController < ApplicationController
         :currency => "usd",
         :customer => @user.stripe_id,
       )
+    # successful charge, send welcome email
+    Mailer.welcome(@user).deliver
+
     rescue Stripe::CardError => e
       # The card has been declined
     end
 
     respond_to do |format|
       if @booking.save
-        sign_in(:user, @user)
-
-        format.html { redirect_to edit_user_password_url, notice: 'Booking was successfully created.' }
+        format.html { redirect_to user_url, notice: 'Booking was successfully created.' }
       else
         format.html { render action: 'new' }
       end
