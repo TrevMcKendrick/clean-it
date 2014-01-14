@@ -62,6 +62,7 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
+        sign_in(:user, @user)
         format.html { redirect_to user_url, notice: 'Booking was successfully created.' }
       else
         format.html { render action: 'new' }

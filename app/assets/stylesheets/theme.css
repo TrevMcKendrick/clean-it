@@ -152,15 +152,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 }
 
-.billboard h1 {
-  margin-bottom: 0;
-  font-size: 37px;
-  line-height: 1;
-  font-weight:400;
-  letter-spacing: -1px;
-  color: #666666;
-}
-
 .billboard p {
   font-size: 14px;
   font-weight: 300;

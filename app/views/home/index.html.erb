@@ -2,32 +2,34 @@
    <!-- Start Billboard -->
 
     <div class="billboard">
-    <div class="container">
-    <div class="row">
+    <div class="container" style="width:85%">
+    <div class="row" style="width:1176px;">
     <div class="span6">
 
-
-   <h1 style="font-weight:400;">Enjoy a clean home</h1>
+   <h1 class="front-page">Enjoy a clean home</h1>
            <br>
            <ul>
             <li>Easy online scheduling</li>
+            <li>$30/hour</li>
+            <li>Every cleaner background checked</li>
             <li>100% Happiness Guaranteed</li>
-            <li>Every cleaner is bonded and insured</li>
            </ul>
                   <br>
             <div class="btn-toolbar">
-      <!-- <button onclick="location.href='http://www.apple.com';" class="btn btn-large btn-head-1"> <i style="padding-right:0px; padding-top:0px;"></i>Book a cleaning</button> -->
 
-      <%= button_to "Book a cleaning", new_booking_path, :class => "btn btn-large btn-head-1", :method => :get %>
 
-      <!-- <button class="btn btn-large"><i style="padding-right:15px; padding-top:5px;" class="icon-star-empty"></i>More about us here</button> -->
+      <%= button_to "Book a cleaning", new_booking_path, :class => "btn btn-large btn-head-1", :method => :get, :style => "float:right; margin-top:20px; font-size:30px;"  %>
+
        </div>
 
         <br>
 
       </div>
 
-<div class="span5"><div class="fancy_placeholder"><img class="shuffle" src="assets/cleaning.jpg" alt="">  </div>
+<div class="span6" style="float:right;">
+  <div class="fancy_placeholder" style="float:right;">
+    <img class="shuffle" src="assets/cleaning.jpg" style="float:right;">  
+  </div>
 </div>
 </div>
 </div>
@@ -41,26 +43,26 @@
 
 
 <div class="sec_2">
-<div class="container">
-<div class="row">
-<div class="span6">
-<ul class="thumbnails">
+<div class="container" style="margin-right: 0x; margin-left: 0px">
+<div class="row" style="width:1176px; margin: 0px 100px;">
+<div class="span6" style="margin-left:0px;">
+<ul class="thumbnails" style="width:275%">
 
-<li class="span2">
+<li class="span5">
 <div class="fancycaption fancycaption-fade">
-<img class="fade" width="150px" src="assets/clean-house-1.jpg" alt="">
+<img width="350px" src="assets/clean-house-1.jpg" alt="">
 </div>
 </li>
 
- <li class="span2">
+ <li class="span5">
  <div class="fancycaption fancycaption-fade">
- <img class="fade" width="150px" src="assets/clean-house-6.jpg" alt="">
+ <img width="350px" src="assets/clean-house-6.jpg" alt="">
  </div>
  </li>
 
- <li class="span2">
+ <li class="span5">
  <div class="fancycaption fancycaption-fade">
- <img class="fade" width="150px" src="assets/clean-house-3.jpg" alt="">
+ <img width="350px" src="assets/clean-house-3.jpg" alt="">
  </div>
  </li>
  </ul></div>

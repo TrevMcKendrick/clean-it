@@ -1,4 +1,34 @@
+.span6.bordered.dashboard {
+  width: 100%;
+  margin: auto 0;
+  margin-bottom: 10px;
+  margin-top:10px;
+}
 
+.container .front-page {
+  width:85;
+
+}
+
+.billboard h1 {
+  margin-bottom: 20px;
+  font-size: 70px;
+  line-height: 1;
+  font-weight:400;
+  letter-spacing: -1px;
+  color: #666666;
+  width: 150%;
+}
+
+.billboard li {
+  font-size: 20px;
+  line-height: 33px;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 20px;
+}
 
 [class*="span"].bordered {
   border-style:solid;
@@ -262,10 +292,6 @@
   text-align: center;
 }
 
-.hours {
-  /*text-align: right;*/
-}
-
 .house-extras {
   border-style:solid;
   border-width:1px;
@@ -342,13 +368,13 @@ a.btn {
   margin-right: 20px;
 }
 
-.row .address [id="state"] {
+/*.row .address [id="state"] {
 
 }
 
 .row .address [id="the_zipcode"] {
 
-}
+}*/
 
 #street_address {
   width: 270px;
