@@ -1,0 +1,65 @@
+<div id="contact-info" style="display:none;">
+    <div id>
+    <%= f.fields_for :user do |builder| %> 
+      <div class="header">
+        <h1>Contact Info</h1>
+      </div>
+
+        <div class="house-details form-group-field">
+          <div class="header">
+              <h4>Name</h4>
+          </div>
+          <%= builder.text_field :name, :as => :user["name"], :placeholder => "Full name"  %><br />
+        </div>
+
+        <div class="house-details form-group-field">
+          <div class="header cleaning_address">
+            <h4>Cleaning Address</h4>
+          </div>
+
+            <div class="address_fields">
+            <%= builder.text_field :address, :as => :user["address"], :id => "street_address", :placeholder => "Street address" %><br />
+
+              <div id="the_state" class="address_field">
+                <%= builder.text_field :state, :as => :user["state"], :id => "state", :placeholder => "State" %><br />
+              </div>
+
+              <div id="the_city" class="address_field">
+                <%= builder.text_field :city, :as => :user["city"], :id => "city", :placeholder => "City" %><br /> 
+              </div>
+
+              <div id="the_zipcode" class="address_field">
+                <%= builder.text_field :zipcode, :as => :user["zipcode"], :id => "zipcode", :placeholder => "Zipcode" %><br />
+              </div>
+            </div>
+
+        </div>    
+
+        <br>
+          <div id="test">
+        </div>
+
+        <div class="header">
+          <h5>We'll only contact you about your cleaning, promise :)</h5>
+        </div>
+
+        <div class="house-details form-group-field">
+          <div class="header">
+            <h4>Email</h4>
+          </div>
+          <%= builder.text_field :email, :as => :user["email"], :placeholder => "Email address" %><br />
+        </div>
+
+        <div class="house-details form-group-field">
+          <div class="header">
+            <h4>Phone</h4>
+          </div>
+          <%= builder.text_field :phone, :as => :user["phone"], :placeholder => "(xxx) xxx-xxxx" %><br />
+        </div>
+
+
+        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "btn btn-success btn-block" %>
+
+    <% end %>  
+    </div> 
+  </div>

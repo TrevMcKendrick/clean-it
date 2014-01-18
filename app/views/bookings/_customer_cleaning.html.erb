@@ -1,0 +1,66 @@
+<div id="booking-details" style="display:block;">
+    <div class="header">
+      <h1>Customize Your Cleaning</h1>
+    </div>
+
+        <div class="btn-group btn-group-lg house-details rooms">
+            <div class="header">
+              <h4>Bedrooms</h4>
+            </div>
+
+          <input type="hidden" id="bedroom-value" value="1 bedroom" name="booking[job][bedroom]"/>
+          <div class="form-group-field btn-group bedroom roomcount">
+            <button type="button" class="btn btn-success btn-number" onclick='setBedroomValue("1 bedroom")'>1</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("2 bedrooms")'>2</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("3 bedrooms")'>3</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("4 bedrooms")'>4</button>
+            <button type="button" class="btn btn-number" onclick='setBedroomValue("5+ bedrooms")'>5+</button>
+          </div>
+        </div>
+
+      <div class="btn-group btn-group-lg house-details rooms">
+          <div class="header">
+            <h4>Bathrooms</h4>
+          </div>
+
+        <input type="hidden" id="bathroom-value" value="1 bathroom" name="booking[job][bathroom]"/>
+        <div class="form-group-field btn-group">
+          <button type="button" class="btn btn-success btn-number" onclick='setBathroomValue("1 bathroom")'>1</button>
+          <button type="button" class="btn btn-number" onclick='setBathroomValue("2 bathrooms")'>2</button>
+          <button type="button" class="btn btn-number" onclick='setBathroomValue("3+ bathrooms")'>3+</button>
+        </div>
+      </div>
+
+      <div class="btn-group btn-group-lg house-details" id="extras">
+          <div class="header extras">
+            <h4>Extras</h4>
+          </div>
+        <div id="house-extras">
+
+          <input type="hidden" id="extras-value" value="" name="booking[job][extras]"/>
+          <div class="form-group-field btn-group extras">
+            <button type="button" class="btn" id="fridge-button" onclick='setExtrasValue("Fridge")'>Fridge</button>
+            <button type="button" class="btn" id="oven-button" onclick='setExtrasValue("Oven")'>Oven</button>
+            <button type="button" class="btn" id="cabinets-button" onclick='setExtrasValue("Inside Cabinets")'>Inside Cabinets</button>
+          </div>
+          <div class="form-group-field btn-group extras">
+            <button type="button" class="btn interior" id="windows-button" onclick='setExtrasValue("Interior Windows")'>Interior Windows</button>
+            <button type="button" class="btn interior" id="walls-button" onclick='setExtrasValue("Interior Walls")'>Interior Walls</button>
+          </div>
+        </div>
+      </div>
+
+    <div class="house-details btn-group hours">  
+      <div class="header">
+        <h4>Number of hours to Book (2 minimum)</h4>
+        <h6 id="recommended_hours_label">We recommend <strong><span id="recommended_hours">2</span></strong> hours based on the size of your place.</h6>
+      </div>
+      <div id="hour-dropdown">
+        <%= f.select :hours, (2..13), :as => :booking["hours"] %>
+      </div>
+    </div>
+
+
+
+      <%= link_to "Next", '#contact-info', :id => "booking-details-complete", :class => "btn btn-success btn-block" %>
+  </div>

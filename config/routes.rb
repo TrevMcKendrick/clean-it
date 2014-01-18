@@ -3,7 +3,13 @@ CleanIt::Application.routes.draw do
 
   get 'user' => "users#show", :path => "customer/dashboard"
 
-  resources :bookings, :path => "booking"
+  # resources :bookings, :path => "booking"
+
+  get 'new_booking' => "bookings#new", :path => "cleaning"
+
+  get 'bookings' => "bookings#index"
+
+  post 'bookings' => "bookings#create"
 
   root 'home#index'
 

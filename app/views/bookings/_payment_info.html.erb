@@ -1,0 +1,31 @@
+<div id="payment-info" style="display:none;">
+    <div class="header">
+      <h1>Payment info</h1>
+    </div>
+
+    <div class="house-details form-group-field">
+      <div class="header">
+        <h4>Credit Card Number</h4>
+      </div>
+      <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
+      <%= image_tag "lock.png" %>
+    </div>
+
+    <div class="house-details form-group-field">
+      <div class="header">
+        <h4>Card security code (CVC)</h4>
+      </div>
+      <%= text_field_tag :card_code, nil, name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
+    </div>
+
+    <div class="house-details form-group-field">
+      <div class="header expiration_date">
+        <h4>Expiration date</h4>
+      </div>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } }  %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
+    </div>
+
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
+
+  </div>

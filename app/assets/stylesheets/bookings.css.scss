@@ -5,6 +5,12 @@
   margin-top:10px;
 }
 
+.card-assurance {
+  display:block; 
+  margin-top:70px; 
+  text-align:right;
+}
+
 .container .front-page {
   width:85;
 
@@ -12,7 +18,7 @@
 
 .billboard h1 {
   margin-bottom: 20px;
-  font-size: 70px;
+  font-size: 60px;
   line-height: 1;
   font-weight:400;
   letter-spacing: -1px;
@@ -31,13 +37,14 @@ ul {
 }
 
 [class*="span"].bordered {
+  border-color: #ededed;
   border-style:solid;
-  border-width:1px;
+  border-width:2px;
   background-color: #F8F8FF;
   margin: 0 auto;
   width: 50%;
   border-radius: 5px;
-  box-shadow: 5px 5px 25px #888888;
+  /*box-shadow: 5px 5px 25px #888888;*/
   margin-top: 10px;
   padding: 0px 10px;
 }

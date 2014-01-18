@@ -4,33 +4,45 @@
 
 $(document).ready(function() {
   $('#booking-details-complete').click(function(event) {  
-      $("#booking-details").css("display", "none");
-      $("#contact-info").css("display", "block");   
+      // showContactForm()
   });
 
   $('#contact-info-complete').click(function(event) {
-      $("#contact-info").css("display", "none");
-      $("#schedule-time").css("display", "block");
+      // showScheduleForm()
   });
 
   $('#schedule-time-complete').click(function(event) {
-      $("#schedule-time").css("display", "none");
-      $("#payment-info").css("display", "block");
+      // showPaymentForm()
   });
 
    $('#payment-info-complete').click(function(event) {
-      $("#payment-info").css("display", "none");
-      $("#finalize-booking").css("display", "block");
-      updateConfimrationPage()
+      // showFinalBookingForm()
   });
 
-  $(function() {
-    $( "#datepicker" ).datepicker({
+   //hash listener
+  $(window).hashchange(function() 
+   {
+      var hash = location.hash;
+      
+      //if hash is blank show the first form
+      if (hash == "") 
+        {
+          showFirstForm();
+        } 
+      else 
+        {
+          showNextForm(hash);
+        }
+   });
+ 
+   $(window).hashchange();
+    //end hash listener 
+
+   $( "#datepicker" ).datepicker({
       minDate: 0,
       showOtherMonths: true,
       selectOtherMonths: true
-    });
-  });
+   });
  
  // BEGIN STRIPE //
     var stripeResponseHandler = function(status, response) {
@@ -65,8 +77,8 @@ $(document).ready(function() {
     });
   // END STRIPE //
 
-  // BEGIN JOB BUTTONS //
-    $('#extras button').click(function() {
+  // BEGIN CLEANING BUTTONS //
+    $('#house-extras button').click(function() {
       $(this).blur();
       $(this).toggleClass('btn-success');
       updateHours();
@@ -76,16 +88,68 @@ $(document).ready(function() {
       $('.house-details button').addClass('active').not(this).removeClass('active');
       $(this).addClass('btn btn-success').siblings('.btn').removeClass('btn-success');
     });
-  // END JOB BUTTONS //
-
+  
     $(".bedroom.btn").click(function() {
       $("#bedroom-value").val($(this).text());
     });     
-
+  // END CLEANING BUTTONS //
 });
 
+function showNextForm(form)
+  {
+    hideAllForms();  
+    $(form).css("display", "block");
+      if (form == "#finalize-booking")
+      {
+        updateConfimrationPage()  
+      }
+
+      if (form == "#payment-info")
+      {
+        $(".card-assurance").css("display", "block");
+      }
+  }
+
+function showFirstForm()
+  { 
+    hideAllForms();
+    $("#booking-details").css("display", "block");
+  }
+
+function hideAllForms()
+  {
+    $("#booking-details").css("display", "none");
+    $("#contact-info").css("display", "none");  
+    $("#schedule-time").css("display", "none");
+    $("#payment-info").css("display", "none");
+    $(".card-assurance").css("display", "none");
+    $("#finalize-booking").css("display", "none");
+  }
+
+function divToDisplay(hash)
+  {
+    switch (hash)
+    {
+      case "#contact-info" :
+        showContactForm();
+        break;
+
+      case "#schedule-time":
+        showScheduleForm();
+        break;
+
+      case "#payment-info":
+        showPaymentForm();
+        break;
+
+      case "#finalize-booking":
+        showFinalBookingForm();
+        break;
+    }
+  }
+
   // BEGIN UPDATE DROPDOWN HOURS //
-  function updateHours()
+function updateHours()
   {
     var extraCount = countExtras();
     
@@ -101,19 +165,21 @@ $(document).ready(function() {
     document.getElementById('recommended_hours').innerHTML = extraCount + bedroomCount + bathroomCount;
   }
 
-  function countExtras()
+function countExtras() 
   {
     var extras = document.getElementById('extras-value').value;
-    if(extras == "") {
+    
+    if(extras == "") 
+    {
       return 0;
     } 
-    else {
+      else 
+    {
       return extras.split(",").length;
     }
-    
   }
 
-    function parseFirstCharacter(string)
+  function parseFirstCharacter(string)
   {
     return string.charAt(0);
   }
@@ -121,78 +187,76 @@ $(document).ready(function() {
   // END UPDATE DROPDOWN HOURS //
 
 
-
   // BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
 function setBedroomValue(rooms)
-    {
-      document.getElementById('bedroom-value').value = rooms;
-      updateHours();
-    }
+  {
+    document.getElementById('bedroom-value').value = rooms;
+    updateHours();
+  }
 
 function setBathroomValue(rooms)
-    {
-      document.getElementById('bathroom-value').value = rooms;
-      updateHours();
-    }
+  {
+    document.getElementById('bathroom-value').value = rooms;
+    updateHours();
+  }
 
 // global variable no no
 var extrasValues = [];
-function setExtrasValue(job) { 
-      if(extrasValues.indexOf(job) > -1) {
-        var index = extrasValues.indexOf(job);
-        extrasValues.splice(index, 1);
-      } 
-      else {
-        extrasValues.push(job)
-      }
-      document.getElementById('extras-value').value = extrasValues;
+
+function setExtrasValue(job) 
+  { 
+    if (extrasValues.indexOf(job) > -1) 
+    {
+      var index = extrasValues.indexOf(job);
+      extrasValues.splice(index, 1);
+    } 
+    else 
+    {
+      extrasValues.push(job)
     }
+      document.getElementById('extras-value').value = extrasValues;
+  }
 
-
-  // END SET ROOM AND VALUES TO HIDDEN FIELDS //    
+// END SET ROOM AND VALUES TO HIDDEN FIELDS //    
 
 //START GOOGLE AUTOCOMPLETE ADDRESS FIELD//
-  google.maps.event.addDomListener(window, 'load', initialize);
+ google.maps.event.addDomListener(window, 'load', initialize);
 
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
   document.getElementById('recommended_hours').innerHTML = 2;
-  //end unrelated
   
   var input = document.getElementById('street_address');
   var autocomplete = new google.maps.places.Autocomplete(input);
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 fillInAddress();
-
   });
 
-  function fillInAddress() {
+    function fillInAddress() {
 
-    var place = autocomplete.getPlace();
+      var place = autocomplete.getPlace();
 
-    var street_number = place.address_components[0].short_name;
-    var street_name = place.address_components[1].short_name;
-    var city = place.address_components[2].short_name;
-    var state = place.address_components[4].short_name;
-    var zipcode = place.address_components[6].short_name;
-    var address = street_number + " " + street_name
+      var street_number = place.address_components[0].short_name;
+      var street_name = place.address_components[1].short_name;
+      var city = place.address_components[2].short_name;
+      var state = place.address_components[4].short_name;
+      var zipcode = place.address_components[6].short_name;
+      var address = street_number + " " + street_name
 
-    document.getElementById('street_address').value = street_address;
-    document.getElementById('city').value = city;
-    document.getElementById('state').value = state;
-    document.getElementById('zipcode').value = zipcode;
+      document.getElementById('street_address').value = street_address;
+      document.getElementById('city').value = city;
+      document.getElementById('state').value = state;
+      document.getElementById('zipcode').value = zipcode;
 
-    //hack because google autocomplete listens to blur event and refills autocomplete//
-    var street_address = $("#street_address");
-    street_address.blur();   
-    setTimeout(function(){
-      street_address.val(address)
-    },0);
-
+      //hack because google autocomplete listens to blur event and refills autocomplete//
+      var street_address = $("#street_address");
+      street_address.blur();   
+      setTimeout(function(){
+        street_address.val(address)
+      },0);
+    }
   }
-
-}
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
 
 //START UPDATE CONFIRMATION PAGE//
@@ -220,17 +284,6 @@ function updateConfimrationPage()
     document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_user_phone').value;
     document.getElementById('confirmation-amount').innerHTML = "$" + finalPrice;
      
-
-     // document.getElementById('confirmation-time').innerHTML = "Mon Feb 10 2014 @ 9:30 AM";
-     // document.getElementById('confirmation-hours').innerHTML = "7" + " " + "hour cleaning ($25/hour)";
-     // document.getElementById('confirmation-bedrooms').innerHTML = "3 bedrooms,"
-     // document.getElementById('confirmation-bathrooms').innerHTML = "2 bathrooms"
-     // document.getElementById('confirmation-extras').innerHTML = "Interior Walls,Inside Cabinets,Oven,Fridge"
-     // document.getElementById('confirmation-address').innerHTML = "856 Cedar Pine Court #20"
-     // document.getElementById('confirmation-city-state-zip').innerHTML = "Salt Lake City, UT 84106"
-     // document.getElementById('confirmation-name').innerHTML = "Trevor McKendrick"
-     // document.getElementById('confirmation-email').innerHTML = "trevormckendrick@gmail.com"
-     // document.getElementById('confirmation-phone').innerHTML = "626-244-4636"
   }
 //END UPDATE CONFIRMATION PAGE//
 
