@@ -3,84 +3,80 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
-  $('#booking-details-complete').click(function(event) {  
-      // showContactForm()
+// BEGIN DATA VALIDATION
+
+  $("#cleaning-form").validate({
+    rules: {
+            email_input: {
+              required: true,
+              email: true
+            },
+            name_input: {
+              required: true
+            },
+            street_address: {
+              required: true
+            },
+            state: {
+              required: true
+            },
+            city: {
+              required: true
+            },
+            zipcode: {
+              required: true
+            },
+            phone_input: {
+              required: true,
+              phoneUS: true
+            }
+         },
+    errorPlacement: function(error,element) {
+      return true;
+    }
   });
 
-  $('#contact-info-complete').click(function(event) {
-      // showScheduleForm()
+  $( "input[class='contact-info-item']" ).keypress(function() {
+     if ( ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
+      {
+        $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
+      }
+      else
+      {
+        $("#contact-info-complete").attr('class', 'next-step btn btn-block');
+      } 
   });
 
-  $('#schedule-time-complete').click(function(event) {
-      // showPaymentForm()
+  $('#phone_input').formatter({
+    'pattern': '({{999}}) {{999}}-{{9999}}',
+    'persistent': false
   });
 
-   $('#payment-info-complete').click(function(event) {
-      // showFinalBookingForm()
-  });
+// END DATA VALIDATION  
 
-   //hash listener
+// BEGIN HASH LISTENER //
   $(window).hashchange(function() 
    {
       var hash = location.hash;
       
-      //if hash is blank show the first form
+      //if URL hash is blank show the first form
       if (hash == "") 
         {
-          showFirstForm();
+          hash = "#booking-details"
         } 
-      else 
-        {
-          showNextForm(hash);
-        }
+      
+      showNextForm(hash);
    });
  
    $(window).hashchange();
-    //end hash listener 
 
-   $( "#datepicker" ).datepicker({
-      minDate: 0,
-      showOtherMonths: true,
-      selectOtherMonths: true
-   });
- 
- // BEGIN STRIPE //
-    var stripeResponseHandler = function(status, response) {
-      var $form = $('#cleaning-form');
- 
-      if (response.error) {
-        // Show the errors on the form
-        $form.find('.payment-errors').text(response.error.message);
-        $form.find('button').prop('disabled', false);
-      } else {
-        // token contains id, last4, and card type
-        var token = response.id;
-        // Insert the token into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // and re-submit
-        $form.get(0).submit();
-      }
-    };
- 
-    $(function($) {
-      $('#cleaning-form').submit(function(e) {
-        var $form = $(this);
- 
-        // Disable the submit button to prevent repeated clicks
-        $form.find('button').prop('disabled', true);
- 
-        Stripe.createToken($form, stripeResponseHandler);
- 
-        // Prevent the form from submitting with the default action
-        return false;
-      });
-    });
-  // END STRIPE //
+// END HASH LISTENER // 
 
-  // BEGIN CLEANING BUTTONS //
+// BEGIN CLEANING BUTTONS //
     $('#house-extras button').click(function() {
       $(this).blur();
       $(this).toggleClass('btn-success');
+
       updateHours();
     });
 
@@ -91,29 +87,60 @@ $(document).ready(function() {
   
     $(".bedroom.btn").click(function() {
       $("#bedroom-value").val($(this).text());
-    });     
-  // END CLEANING BUTTONS //
+    });   
+
+// END CLEANING BUTTONS //
+  
+   $( "#datepicker" ).datepicker({
+      minDate: 0,
+      showOtherMonths: true,
+      selectOtherMonths: true
+   });
+
 });
 
+
+
+
+
 function showNextForm(form)
-  {
-    hideAllForms();  
+  { 
+    hideAllForms();
+    dimProgressBar();
+    
     $(form).css("display", "block");
-      if (form == "#finalize-booking")
+
+      if (form == "#booking-details")
       {
-        updateConfimrationPage()  
+        $("#progress-bar-item-one").addClass('progress-bar-item-active');
+      }
+
+      if (form == "#contact-info")
+      {
+        $("#progress-bar-item-two").addClass('progress-bar-item-active');
+      }
+
+      if (form == "#schedule-time")
+      {
+        $("#progress-bar-item-three").addClass('progress-bar-item-active');
       }
 
       if (form == "#payment-info")
       {
         $(".card-assurance").css("display", "block");
+        $("#progress-bar-item-four").addClass('progress-bar-item-active');
+      }
+
+      if (form == "#finalize-booking")
+      {
+        $("#progress-bar-item-five").addClass('progress-bar-item-active');
+        updateConfirmationPage();
       }
   }
 
-function showFirstForm()
-  { 
-    hideAllForms();
-    $("#booking-details").css("display", "block");
+function dimProgressBar()
+  {
+    $(".progress-bar-item").attr('class', 'progress-bar-item');
   }
 
 function hideAllForms()
@@ -126,29 +153,7 @@ function hideAllForms()
     $("#finalize-booking").css("display", "none");
   }
 
-function divToDisplay(hash)
-  {
-    switch (hash)
-    {
-      case "#contact-info" :
-        showContactForm();
-        break;
-
-      case "#schedule-time":
-        showScheduleForm();
-        break;
-
-      case "#payment-info":
-        showPaymentForm();
-        break;
-
-      case "#finalize-booking":
-        showFinalBookingForm();
-        break;
-    }
-  }
-
-  // BEGIN UPDATE DROPDOWN HOURS //
+// BEGIN UPDATE DROPDOWN HOURS //
 function updateHours()
   {
     var extraCount = countExtras();
@@ -183,24 +188,41 @@ function countExtras()
   {
     return string.charAt(0);
   }
+// END UPDATE DROPDOWN HOURS //
 
-  // END UPDATE DROPDOWN HOURS //
 
-
-  // BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
+// BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
 function setBedroomValue(rooms)
   {
     document.getElementById('bedroom-value').value = rooms;
     updateHours();
+
+    // var buttonId = rooms.replace(" ","-");
+    // toggleSuccessClass(buttonId);
+
+    // if (containsChar(rooms,"5") >= 0 )
+    // {
+    //   var buttonId = rooms.replace("+ ","-");
+    //   alert(buttonId);
+    //   toggleSuccessClass(buttonId);
+    // }
+    // else
+    // {
+    //   var buttonId = rooms.replace(" ","-");
+    //   // alert("buttonId);
+    //   toggleSuccessClass(buttonId);
+    // }
   }
 
 function setBathroomValue(rooms)
-  {
-    document.getElementById('bathroom-value').value = rooms;
-    updateHours();
-  }
+{
+  document.getElementById('bathroom-value').value = rooms;
+  updateHours();
+}
+
 
 // global variable no no
+
 var extrasValues = [];
 
 function setExtrasValue(job) 
@@ -225,6 +247,9 @@ function setExtrasValue(job)
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
   document.getElementById('recommended_hours').innerHTML = 2;
+
+  $("#progress-bar-item-one").addClass('progress-bar-item-active');
+
   
   var input = document.getElementById('street_address');
   var autocomplete = new google.maps.places.Autocomplete(input);
@@ -260,7 +285,7 @@ function setExtrasValue(job)
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
 
 //START UPDATE CONFIRMATION PAGE//
-function updateConfimrationPage()
+function updateConfirmationPage()
   {
     var street_address = document.getElementById('street_address').value;
     var state = document.getElementById('state').value;
@@ -285,5 +310,38 @@ function updateConfimrationPage()
     document.getElementById('confirmation-amount').innerHTML = "$" + finalPrice;
      
   }
-//END UPDATE CONFIRMATION PAGE//
 
+// BEGIN STRIPE //
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#cleaning-form');
+ 
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        $form.get(0).submit();
+      }
+    };
+ 
+    $(function($) {
+      $('#cleaning-form').submit(function(e) {
+        var $form = $(this);
+ 
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+ 
+        Stripe.createToken($form, stripeResponseHandler);
+ 
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+// END STRIPE //
+
+//END UPDATE CONFIRMATION PAGE//

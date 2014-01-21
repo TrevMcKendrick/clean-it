@@ -47,6 +47,8 @@ class BookingsController < ApplicationController
 
     @user.save
 
+    Mailer.welcome(@user).deliver
+
     # CHARGE THE CARD
     # begin
     #   charge = Stripe::Charge.create(
@@ -54,8 +56,6 @@ class BookingsController < ApplicationController
     #     :currency => "usd",
     #     :customer => @user.stripe_id,
     #   )
-    # # successful charge, send welcome email
-    # Mailer.welcome(@user).deliver
 
     # rescue Stripe::CardError => e
     #   # The card has been declined

@@ -1,19 +1,15 @@
 CleanIt::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :path_names => { :sign_up => "randomunguessablename" }
 
   get 'user' => "users#show", :path => "customer/dashboard"
 
-  # resources :bookings, :path => "booking"
-
   get 'new_booking' => "bookings#new", :path => "cleaning"
 
-  get 'bookings' => "bookings#index"
+  # get 'booking' => "bookings#index"
 
   post 'bookings' => "bookings#create"
 
   root 'home#index'
-
-  get 'about' => "about#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

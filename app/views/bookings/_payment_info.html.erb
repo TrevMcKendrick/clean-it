@@ -26,6 +26,6 @@
       <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
     </div>
 
-      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn btn-success btn-block" %>
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn next-step btn-block" %>
 
   </div>

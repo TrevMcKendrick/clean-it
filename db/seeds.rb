@@ -43,7 +43,7 @@ jobs = Job.create([
     price: 5000
   },
   { 
-    name: "3 bathrooms+",
+    name: "3+ bathrooms",
     time: 3,
     price: 7500
   },

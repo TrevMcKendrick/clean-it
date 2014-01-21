@@ -1,3 +1,32 @@
+.next-step.btn {
+  pointer-events: none;
+  background-image: linear-gradient(to bottom,#ccfdbc,#9cdc85);
+  border-color: #ccfdbc;
+}
+
+.progress-bar-item {
+  float: left;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.progress-bar-item-active {
+  color: #0079ff;
+}
+
+.progress-bar {
+  height: 20px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  margin-top: 15px;
+}
+
+.progress-bar p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
 .span6.bordered.dashboard {
   width: 100%;
   margin: auto 0;
