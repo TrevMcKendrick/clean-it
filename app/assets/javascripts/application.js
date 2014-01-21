@@ -10,8 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 
+
 //= require jquery
 //= require jquery_ujs
-//= require jquery.cookie.js
+//= require jquery.cookie
+//= require jquery-fullcalendar.min
+//= require fullcalendar
 //= require google
+//= require jquery.payment
 //= require_tree .
+

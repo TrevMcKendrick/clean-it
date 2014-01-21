@@ -3,13 +3,36 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
+
+// BEGIN CALENDAR 
+   $("#calendar").fullCalendar({
+      dayClick: function(date, allDay, jsEvent, view) {
+        $(".fc-day").css("background-color", "#F8F8FF");
+        $(this).css('background-color', '#8eee00');
+
+        $("#schedule-time-complete").attr('class', 'btn btn-success btn-block');
+        // alert(date); 
+      },
+     
+      header: {
+        left:   'prev',
+        center: 'title',
+        right:  'next'
+      },
+      weekMode: "variable"
+    })
+
+
+// END CALENDAR
+
+
 // BEGIN DATA VALIDATION
 
   $("#cleaning-form").validate({
     rules: {
             email_input: {
-              required: true,
-              email: true
+              email: true,
+              required: true              
             },
             name_input: {
               required: true
@@ -27,8 +50,8 @@ $(document).ready(function() {
               required: true
             },
             phone_input: {
-              required: true,
-              phoneUS: true
+              phoneUS: true,
+              required: true              
             }
          },
     errorPlacement: function(error,element) {
@@ -36,7 +59,7 @@ $(document).ready(function() {
     }
   });
 
-  $( "input[class='contact-info-item']" ).keypress(function() {
+  $( "input[class='contact-info-item']" ).keyup(function() {
      if ( ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
       {
         $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
@@ -44,6 +67,23 @@ $(document).ready(function() {
       else
       {
         $("#contact-info-complete").attr('class', 'next-step btn btn-block');
+      } 
+  });
+
+
+  $('#card_number').payment('formatCardNumber');
+  $('#card_code').payment('formatCardCVC');
+
+  $(".payment-form").keyup(function() {
+      var cardValid = $.payment.validateCardNumber($('#card_number').val());
+      var cvcValid = $.payment.validateCardCVC($('#card_code').val());
+     if ( cardValid && cvcValid )
+      {
+        $("#payment-info-complete").attr('class', 'btn btn-success btn-block');
+      }
+      else
+      {
+        $("#payment-info-complete").attr('class', 'next-step btn btn-block');
       } 
   });
 
@@ -196,22 +236,6 @@ function setBedroomValue(rooms)
   {
     document.getElementById('bedroom-value').value = rooms;
     updateHours();
-
-    // var buttonId = rooms.replace(" ","-");
-    // toggleSuccessClass(buttonId);
-
-    // if (containsChar(rooms,"5") >= 0 )
-    // {
-    //   var buttonId = rooms.replace("+ ","-");
-    //   alert(buttonId);
-    //   toggleSuccessClass(buttonId);
-    // }
-    // else
-    // {
-    //   var buttonId = rooms.replace(" ","-");
-    //   // alert("buttonId);
-    //   toggleSuccessClass(buttonId);
-    // }
   }
 
 function setBathroomValue(rooms)
@@ -247,9 +271,6 @@ function setExtrasValue(job)
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
   document.getElementById('recommended_hours').innerHTML = 2;
-
-  $("#progress-bar-item-one").addClass('progress-bar-item-active');
-
   
   var input = document.getElementById('street_address');
   var autocomplete = new google.maps.places.Autocomplete(input);

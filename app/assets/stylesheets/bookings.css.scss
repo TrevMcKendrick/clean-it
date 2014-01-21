@@ -1,3 +1,30 @@
+.fc-day-number {
+  text-align: center;
+  font-size: 18px;
+  padding: 0px;
+  padding-top: 17px;
+}
+
+.fc-grid .fc-day-number {
+  float:none;
+  padding: 0px;
+}
+
+.fc-header-title h2 {
+  font-size: 23px;
+  font-weight: lighter;
+}
+
+.hover {
+  background-color: red;
+}
+
+.active {
+  background-color: #8eee00;
+}
+
+
+
 .next-step.btn {
   pointer-events: none;
   background-image: linear-gradient(to bottom,#ccfdbc,#9cdc85);

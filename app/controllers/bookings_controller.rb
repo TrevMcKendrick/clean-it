@@ -39,7 +39,7 @@ class BookingsController < ApplicationController
     create_booking_job_instances_from_array(jobs, @booking)
     
     @user = @booking.build_user(user_params[:user])
-
+    
     stripe_user_object = User.create_stripe_user(params[:stripeToken], "blank_description")
 
     @user.stripe_id = stripe_user_object.id

@@ -7,7 +7,7 @@
       <div class="header">
         <h4>Credit Card Number</h4>
       </div>
-      <%= text_field_tag :card_number, nil, name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
+      <%= text_field_tag :card_number, nil, :class => "valid payment-form", name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
       <%= image_tag "lock.png" %>
     </div>
 
@@ -15,7 +15,7 @@
       <div class="header">
         <h4>Card security code (CVC)</h4>
       </div>
-      <%= text_field_tag :card_code, nil, name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
+      <%= text_field_tag :card_code, nil,:class => "valid payment-form" , name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
     </div>
 
     <div class="house-details form-group-field">
