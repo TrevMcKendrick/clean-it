@@ -305,10 +305,17 @@ function setExtrasValue(job)
   }
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
 
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
+
 //START UPDATE CONFIRMATION PAGE//
 function updateConfirmationPage()
   {
     var street_address = document.getElementById('street_address').value;
+    // street_address.replace(', United States','');
     var state = document.getElementById('state').value;
     var city = document.getElementById('city').value;
     var zipcode = document.getElementById('zipcode').value;
@@ -318,18 +325,30 @@ function updateConfirmationPage()
     
     document.getElementById('booking-price').innerHTML = "$" + bookingPrice;
     document.getElementById('supply-cost').innerHTML = "$" + gon.supplies_price;
-    document.getElementById('confirmation-time').innerHTML = "Mon Feb 10 2014 @ 9:30 AM";
+    document.getElementById('confirmation-time').innerHTML = "Monday Feb 10 @ 9:30 AM";
     document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value + " " + "hour cleaning" + " " + "($" + gon.price +  "/hour)";
     document.getElementById('confirmation-bedrooms').innerHTML = document.getElementById('bedroom-value').value;
     document.getElementById('confirmation-bathrooms').innerHTML = document.getElementById('bathroom-value').value;
     document.getElementById('confirmation-extras').innerHTML = document.getElementById('extras-value').value;
-    document.getElementById('confirmation-address').innerHTML = street_address;
-    document.getElementById('confirmation-city-state-zip').innerHTML = city + ", " + state + " " + zipcode;
-    document.getElementById('confirmation-name').innerHTML = document.getElementById('booking_user_name').value;
-    document.getElementById('confirmation-email').innerHTML = document.getElementById('booking_user_email').value;
-    document.getElementById('confirmation-phone').innerHTML = document.getElementById('booking_user_phone').value;
+    document.getElementById('confirmation-address').innerHTML = toTitleCase(street_address.replace(', United States',''));
+    document.getElementById('confirmation-city-state-zip').innerHTML = toTitleCase(city) + ", " + state.toUpperCase(); + " " + zipcode;
+    document.getElementById('confirmation-name').innerHTML = toTitleCase(document.getElementById('name_input').value);
+    document.getElementById('confirmation-email').innerHTML = document.getElementById('email_input').value;
+    document.getElementById('confirmation-phone').innerHTML = document.getElementById('phone_input').value;
     document.getElementById('confirmation-amount').innerHTML = "$" + finalPrice;
      
+
+
+    // document.getElementById('confirmation-bedrooms').innerHTML = "2 bedrooms";
+    // document.getElementById('confirmation-bathrooms').innerHTML = "3+ bathrooms";
+    // document.getElementById('confirmation-extras').innerHTML = "oven,cabinets,fridge,walls";
+    // document.getElementById('confirmation-address').innerHTML = "6057 Primrose Avenue";
+    // document.getElementById('confirmation-city-state-zip').innerHTML = "Temple City, CA 91780";
+    // document.getElementById('confirmation-name').innerHTML = "Trevor McKendrick";
+    // document.getElementById('confirmation-email').innerHTML = "trevormckendrick@gmail.com";
+    // document.getElementById('confirmation-phone').innerHTML = "626-244-4636";
+
+
   }
 
 // BEGIN STRIPE //

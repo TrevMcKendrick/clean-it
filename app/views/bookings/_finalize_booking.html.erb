@@ -3,6 +3,7 @@
   <div class="header">
       <h1>Review order</h1>
   </div>
+  <%= f.submit "Book cleaning", :class => "btn btn-success btn-block", :id => "finalize-booking-button", :style => "margin: 20px 0;" %>
   <div class="confirmations-details">
     <div class="confirmation">
         <h3 id="confirmation-time"></h3>
@@ -11,21 +12,27 @@
         <h4 id="booking-price" class="details"></h4>
         <h4 id="confirmation-supplies">Supplies cost:</h4>
         <h4 id="supply-cost" class="details">+$<%= supply_price %></h4>
+        <hr style="margin:0, margin-bottom:10px;">
         <h4 id="confirmation-total">Total:</h4>
         <h4 id="confirmation-amount"></h4>
       </div>
     </div>
 
     <div class="confirmation">
-      <h2 class="confirmation-header">Home Info</h2>
-      <h3 id="confirmation-address"></h3>
-      <h3 id="confirmation-city-state-zip"></h3>
+      <h2 class="confirmation-header">Cleaning Info</h2>      
 
-      <h3 id="confirmation-bedrooms"></h3>
-      <h3 id="confirmation-bathrooms"></h3>
+      <div class="house-confirmation">
+        <h3 id="confirmation-bedrooms" class="room-confirmation"></h3>
+        <h3 id="confirmation-bathrooms" class="room-confirmation"></h3>
+        <h4 id="confirmation-extras"></h4>
 
+        <hr style="margin:0;">
 
-      <h3 id="confirmation-extras"></h3>
+        <h5 id="confirmation-address" class="address-confirmation"></h5>
+        <h5 id="confirmation-city-state-zip" class="address-confirmation"></h5>
+      </div>
+
+      
     </div>
 
     <div class="confirmation">

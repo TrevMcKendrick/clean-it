@@ -7,7 +7,7 @@
       <div class="header">
         <h4>Credit Card Number</h4>
       </div>
-      <%= text_field_tag :card_number, nil, :class => "valid payment-form", name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }%>
+      <%= text_field_tag :card_number, nil, :class => "valid payment-form", name: nil, :placeholder => "Card Number", :data => {:stripe => 'number' }, :tabindex => 1, :autofocus => true%>
       <%= image_tag "lock.png" %>
     </div>
 
@@ -15,17 +15,17 @@
       <div class="header">
         <h4>Card security code (CVC)</h4>
       </div>
-      <%= text_field_tag :card_code, nil,:class => "valid payment-form" , name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }%>
+      <%= text_field_tag :card_code, nil,:class => "valid payment-form" , name: nil, :placeholder => "3 or 4 digits", :data => {:stripe => 'cvc' }, :tabindex => 2 %>
     </div>
 
     <div class="house-details form-group-field">
       <div class="header expiration_date">
         <h4>Expiration date</h4>
       </div>
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } }  %>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", :data => {:stripe => 'exp-month' } } %>
       <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", :data => {:stripe => 'exp-year' } } %>
     </div>
 
-      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn next-step btn-block" %>
+      <%= link_to "Next", '#finalize-booking', :id => "payment-info-complete", :class => "btn next-step btn-block", :tabindex => 3 %>
 
   </div>

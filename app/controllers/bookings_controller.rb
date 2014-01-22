@@ -60,9 +60,10 @@ class BookingsController < ApplicationController
     # rescue Stripe::CardError => e
     #   # The card has been declined
     # end
-
+    binding.pry
     respond_to do |format|
       if @booking.save
+        binding.pry
         sign_in(:user, @user)
         format.html { redirect_to user_url, notice: 'Booking was successfully created.' }
       else

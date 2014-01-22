@@ -9,7 +9,7 @@
           <div class="header">
               <h4>Name</h4>
           </div>
-          <%= builder.text_field :name, :as => :user["name"], :id => "name_input", :placeholder => "Full name", :class => "contact-info-item", :required => true  %><br />
+          <%= builder.text_field :name, :as => :user["name"], :id => "name_input", :placeholder => "Full name", :class => "contact-info-item", :required => true, :tabindex => 1, :autofocus => true  %><br />
         </div>
 
         <div class="house-details form-group-field">
@@ -18,18 +18,18 @@
           </div>
 
             <div class="address_fields">
-            <%= builder.text_field :address, :as => :user["address"], :id => "street_address", :placeholder => "Street address", :class => "contact-info-item", :required => true %><br />
+            <%= builder.text_field :address, :as => :user["address"], :id => "street_address", :placeholder => "Street address", :class => "contact-info-item", :required => true, :tabindex => 2 %><br />
 
               <div id="the_state" class="address_field">
-                <%= builder.text_field :state, :as => :user["state"], :id => "state", :placeholder => "State", :class => "contact-info-item", :required => true %><br />
+                <%= builder.text_field :state, :as => :user["state"], :id => "state", :placeholder => "State", :class => "contact-info-item", :required => true, :tabindex => 4 %><br />
               </div>
 
               <div id="the_city" class="address_field">
-                <%= builder.text_field :city, :as => :user["city"], :id => "city", :placeholder => "City", :class => "contact-info-item", :required => true %><br /> 
+                <%= builder.text_field :city, :as => :user["city"], :id => "city", :placeholder => "City", :class => "contact-info-item", :required => true, :tabindex => 3 %><br /> 
               </div>
 
               <div id="the_zipcode" class="address_field">
-                <%= builder.text_field :zipcode, :as => :user["zipcode"], :id => "zipcode", :placeholder => "Zipcode", :class => "contact-info-item", :required => true %><br />
+                <%= builder.text_field :zipcode, :as => :user["zipcode"], :id => "zipcode", :placeholder => "Zipcode", :class => "contact-info-item", :required => true, :tabindex => 5 %><br />
               </div>
             </div>
 
@@ -47,18 +47,18 @@
           <div class="header">
             <h4>Email</h4>
           </div>
-          <%= builder.text_field :email, :as => :user["email"], :id => "email_input", :placeholder => "Email address", :class => "contact-info-item", :required => true %><br />
+          <%= builder.text_field :email, :as => :user["email"], :id => "email_input", :placeholder => "Email address", :class => "contact-info-item", :required => true, :tabindex => 6 %><br />
         </div>
 
         <div class="house-details form-group-field">
           <div class="header">
             <h4>Phone</h4>
           </div>
-          <%= builder.text_field :phone, :as => :user["phone"], :id => "phone_input", :placeholder => "(xxx) xxx-xxxx", :class => "contact-info-item", :required => true %><br />
+          <%= builder.text_field :phone, :as => :user["phone"], :id => "phone_input", :placeholder => "(xxx) xxx-xxxx", :class => "contact-info-item", :required => true, :tabindex => 7 %><br />
         </div>
 
 
-        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "next-step btn btn-block" %>
+        <%= link_to "Next", '#schedule-time', :id => "contact-info-complete", :class => "next-step btn btn-block", :tabindex => 8 %>
 
     <% end %>  
     </div> 

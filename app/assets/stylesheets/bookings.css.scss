@@ -189,7 +189,7 @@ ul {
   border-radius:5px;
   border-color: #b6b6b6;
   padding: 1px;
-  margin-top: 15px;
+  margin-top: 0px;
   background-color: #fafafa;
   text-align: center;
 }
@@ -222,30 +222,69 @@ ul {
 
 #confirmation-address {
   text-align: center;
-  font-size: 24px;
-  font-weight: lighter;
-  margin-bottom: 0px;
-  height: 33px;
+  margin-bottom: 5px;
+  height: 25px;
+  margin-top: 30;
 }
 
-.confirmation-contact-info {
+.address-confirmation {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+#confirmation-bedrooms {
+  float:left;
+  margin-top: 0;
+}
+
+#confirmation-bathrooms {
+  text-align: right;
+}
+
+.house-confirmation {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.house-confirmation h3 {
+  font-size: 24px;
+  font-weight: lighter;
   text-align: center;
-  font-size: 24px;
-  font-weight: lighter;
-  margin-bottom: 0px;
-  height: 33px;
 }
 
-.confirmations-details {
-  margin-bottom: 10px;
+.room-confirmation {
+  margin-bottom: 0;
 }
 
 #confirmation-city-state-zip {
   text-align: center;
-  font-size: 24px;
-  font-weight: lighter;
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
+}
+
+#confirmation-extras {
+  font-size: 18px;
+  text-align: center;
+  font-weight: lighter;
+  margin: 0;
+  height: 30px;
+}
+
+.confirmation-contact-info {
+  text-align: center;
+  font-size: 16px;
+  font-weight: lighter;
+  margin: 0;
+  margin-bottom: 10px;
+  height: 25px;
+}
+
+#confirmation-name {
+  font-size: 24px;
+}
+
+.confirmations-details {
+  margin-bottom: 10px;
 }
 
 .time-container {
@@ -265,25 +304,6 @@ ul {
   margin-bottom: 10px;
 }
 
-#confirmation-bedrooms {
-  font-weight: lighter;
-  float:left;
-  width:115px;
-  font-size: 18px;
-  text-align: center;
-  margin: 0 auto;
-  margin-left: 120px;
-  height: 10px;
-}
-
-#confirmation-bathrooms {
-  font-weight: lighter;
-  float:left;
-  margin: 0px;
-  font-size: 18px;
-  height: 10px;
-}
-
 #confirmation-supplies {
   font-weight: lighter;
   float:left;
@@ -292,7 +312,6 @@ ul {
 }
 
 #confirmation-total {
-  /*font-weight: lighter;*/
   float:left;
   margin-top: 0px;
 }
@@ -312,14 +331,7 @@ ul {
   margin-bottom: 0px;
 }
 
-#confirmation-extras {
-  font-size: 18px;
-  text-align: center;
-  font-weight: lighter;
-  margin-top: 25px;
-  margin-bottom: 0px;
-  height: 40px;
-}
+
 
 .details {
   font-weight: lighter;
