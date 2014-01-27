@@ -25,7 +25,7 @@ gem 'cancan'
 
 gem 'devise'
 
-gem "letter_opener", :group => :development
+# gem "letter_opener", :group => :development
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'

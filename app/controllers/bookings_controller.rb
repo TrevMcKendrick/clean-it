@@ -24,30 +24,25 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   # POST /bookings.json
-  def create
-        
+  def create        
     @booking = Booking.new(booking_params)
 
     @booking.price = @booking.calculate_price(params[:booking][:hours].to_i)
     @booking.save
 
-    jobs = booking_job_params[:job][:extras].split(",")
-
-    jobs << booking_job_params[:job][:bedroom]
-    jobs << booking_job_params[:job][:bathroom]
+    create_booking_job_instances_from_array(save_jobs, @booking)
     
-    create_booking_job_instances_from_array(jobs, @booking)
-    
-    @user = @booking.build_user(user_params[:user])
-    
-    stripe_user_object = User.create_stripe_user(params[:stripeToken], "blank_description")
-
-    @user.stripe_id = stripe_user_object.id
-    @user.password = Devise.friendly_token.first(8)
-
-    @user.save
-
-    Mailer.welcome(@user).deliver
+    if user_signed_in? 
+      @user = User.find(current_user.id)
+      @booking.user = @user
+    else
+      @user = @booking.build_user(user_params[:user])
+      stripe_user_object = User.create_stripe_user(params[:stripeToken], "blank_description")
+      @user.stripe_id = stripe_user_object.id
+      @user.password = Devise.friendly_token.first(8)
+      @user.save
+      Mailer.welcome(@user).deliver
+    end
 
     # CHARGE THE CARD
     # begin
@@ -60,12 +55,11 @@ class BookingsController < ApplicationController
     # rescue Stripe::CardError => e
     #   # The card has been declined
     # end
-    binding.pry
+
     respond_to do |format|
       if @booking.save
-        binding.pry
         sign_in(:user, @user)
-        format.html { redirect_to user_url, notice: 'Booking was successfully created.' }
+        format.html { redirect_to user_url, notice: 'Booking was successfully saved!' }
       else
         format.html { render action: 'new' }
       end
@@ -112,7 +106,7 @@ class BookingsController < ApplicationController
     end
 
     def user_params
-      params.require(:booking).permit(user: [:name, :address, :email, :phone])
+      params.require(:booking).permit(user: [:name, :address, :city, :state, :zipcode, :email, :phone])
     end
 
     def create_booking_job_instances_from_array(array, booking)
@@ -128,6 +122,12 @@ class BookingsController < ApplicationController
     def set_prices
       gon.price = HOURLY_PRICE
       gon.supplies_price = SUPPLIES_PRICE
+    end
+
+    def save_jobs
+      jobs = booking_job_params[:job][:extras].split(",")
+      jobs << booking_job_params[:job][:bedroom]
+      jobs << booking_job_params[:job][:bathroom]
     end
 
 end

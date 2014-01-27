@@ -1,5 +1,24 @@
-<div id="booking-details">
-    <div class="header dashboard">
-      <h1>Your cleanings</h1>
+<div>
+    <div class="header">
+      <h1>Your Cleanings</h1>
+    </div>
+    <div class="booking-summary">
+      <ul class="summary">
+        <li>
+          <div class="span3 summary-title date">Date</div>
+          <div class="span3 summary-title time">Time</div>
+          <div class="span3 summary-title price">Price</div>
+          <div class="span3 summary-title cleaning-details">Cleaning Details</div><br>
+        </li>
+        <% user_bookings.each do |booking| %>
+            <li class="booking-line">
+              <div class="span3 summary-line date"><%= date(booking.time) %></div>
+              <div class="span3 summary-line time"><%= time(booking.time) %></div>
+              <div class="span3 summary-line price"><%= prettify_price(booking.price) %></div>
+              <div class="span3 summary-line cleaning-details"><%= jobs(booking) %></div>
+            </li>
+        <% end %>
+      </ul>
+
     </div>
 </div>

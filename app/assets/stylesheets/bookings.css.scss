@@ -1,13 +1,77 @@
+.summary {
+  width: 100%;
+  font-size: 16px;
+  padding-bottom: 5px;
+  border: 0px;
+  border-bottom: 1px;
+  border-style:solid;
+  border-color: white;
+
+}
+
+.summary-title {
+  font-weight: bold;
+}
+
+.summary-line {
+  margin-top: 12px;
+}
+
+.summary {
+  margin: 0px;
+}
+
+.span3.price {
+  width: 80px;
+}
+
+.span3.date {
+  width: 160px;
+}
+
+.span3.time {
+  width: 100px;
+}
+
+.span3.cleaning-details {
+  width: 400px;
+}
+
+.booking-summary {
+  border-style:solid;
+  border-width:1px;
+  border-radius:5px;
+  border-color: #b6b6b6;
+  padding: 15px;
+  background-color: #F8F8FF;
+  margin: 10px 0px;
+  background-color: #e4e4e4;
+  font-size: 18px;
+  display:block;
+  overflow:auto;
+}
+
+.calendar-day-group {
+  margin-bottom: 10px;
+}
+
+.btn.time {
+  margin-bottom: 10px;
+}
+
 .fc-day-number {
   text-align: center;
   font-size: 18px;
   padding: 0px;
   padding-top: 17px;
+  /*margin-top: 17px;*/
+  max-height: 56px;
 }
 
 .fc-grid .fc-day-number {
   float:none;
-  padding: 0px;
+  font-size: 20px;
+  max-height: 56px;
 }
 
 .fc-header-title h2 {

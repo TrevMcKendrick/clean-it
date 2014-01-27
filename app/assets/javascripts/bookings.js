@@ -2,6 +2,8 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
+var scheduled_time = new Date();
+
 $(document).ready(function() {
 
 // BEGIN CALENDAR 
@@ -9,11 +11,14 @@ $(document).ready(function() {
       dayClick: function(date, allDay, jsEvent, view) {
         $(".fc-day").css("background-color", "#F8F8FF");
         $(this).css('background-color', '#8eee00');
-
         $("#schedule-time-complete").attr('class', 'btn btn-success btn-block');
-        // alert(date); 
+
+        scheduled_time.setDate(date.getDate());
+        scheduled_time.setMonth(date.getMonth());
+        scheduled_time.setFullYear(date.getFullYear());
+        document.getElementById('reservation-time').value = scheduled_time;
+        updateConfirmationPage();
       },
-     
       header: {
         left:   'prev',
         center: 'title',
@@ -97,6 +102,7 @@ $(document).ready(function() {
 // BEGIN HASH LISTENER //
   $(window).hashchange(function() 
    {
+
       var hash = location.hash;
       
       //if URL hash is blank show the first form
@@ -137,8 +143,31 @@ $(document).ready(function() {
       selectOtherMonths: true
    });
 
+  // BEGIN CALENDAR BUTTONS //
+
+   $(".calendar-buttons button").click(function() {
+      $('.calendar-buttons button').addClass('active').not(this).removeClass('active');
+      $(this).addClass('btn btn-success').siblings('.btn').removeClass('btn-success');
+      var time = $(this).attr("value");
+      scheduled_time.setHours(parseHour(time));
+      scheduled_time.setMinutes(parseMinutes(time));
+      scheduled_time.setSeconds(00);
+      document.getElementById('reservation-time').value = scheduled_time;
+      updateConfirmationPage();
+    });
+   // END CALENDAR BUTTONS //
+
 });
 
+function parseHour(time)
+{
+  return time.slice(0, 2);
+}
+
+function parseMinutes(time)
+{
+  return time.slice(3, 5);
+}
 
 
 
@@ -244,7 +273,6 @@ function setBathroomValue(rooms)
   updateHours();
 }
 
-
 // global variable no no
 
 var extrasValues = [];
@@ -325,7 +353,8 @@ function updateConfirmationPage()
     
     document.getElementById('booking-price').innerHTML = "$" + bookingPrice;
     document.getElementById('supply-cost').innerHTML = "$" + gon.supplies_price;
-    document.getElementById('confirmation-time').innerHTML = "Monday Feb 10 @ 9:30 AM";
+
+    document.getElementById('confirmation-time').innerHTML = $.fullCalendar.formatDate(scheduled_time, "dddd MMM d") + " @ " + $.fullCalendar.formatDate(scheduled_time, "h:mm TT");
     document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value + " " + "hour cleaning" + " " + "($" + gon.price +  "/hour)";
     document.getElementById('confirmation-bedrooms').innerHTML = document.getElementById('bedroom-value').value;
     document.getElementById('confirmation-bathrooms').innerHTML = document.getElementById('bathroom-value').value;

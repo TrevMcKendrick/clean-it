@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :bookings
 
+  validates :email, :uniqueness => true
+
   def self.create_stripe_user(stripe_token, description)
     customer = Stripe::Customer.create(
         :card => stripe_token,
