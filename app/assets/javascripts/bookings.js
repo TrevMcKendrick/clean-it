@@ -35,27 +35,27 @@ $(document).ready(function() {
 
   $("#cleaning-form").validate({
     rules: {
-            email_input: {
+            "booking[user][email]": {
+              required: true,
               email: true,
-              required: true              
+              remote: "/check_email_uniqueness"
             },
-            name_input: {
+            "booking[user][name]": {
               required: true
             },
-            street_address: {
+            "booking[user][address]": {
               required: true
             },
-            state: {
+            "booking[user][state]": {
               required: true
             },
-            city: {
+            "booking[user][city]": {
               required: true
             },
-            zipcode: {
+            "booking[user][zipcode]": {
               required: true
             },
-            phone_input: {
-              phoneUS: true,
+            "booking[user][phone]": {
               required: true              
             }
          },
@@ -74,6 +74,17 @@ $(document).ready(function() {
         $("#contact-info-complete").attr('class', 'next-step btn btn-block');
       } 
   });
+
+  // $( "#email_input" ).blur(function() {
+  //    if ( $("#email_input").valid() ) 
+  //     {
+  //       alert("one");
+  //     }
+  //     else
+  //     {
+  //       alert("two");
+  //     } 
+  // });
 
 
   $('#card_number').payment('formatCardNumber');
