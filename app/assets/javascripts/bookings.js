@@ -33,7 +33,7 @@ $(document).ready(function() {
 // BEGIN DATA VALIDATION
 
  var validator = $("#cleaning-form").validate({
-    // onfocusout: function(element) { $(element).valid(); },
+    onfocusout: function(element) { $(element).valid(); },
     onkeyup: false,
     rules: {
             "booking[user][email]": {
@@ -49,7 +49,7 @@ $(document).ready(function() {
            },
     messages: {
       "booking[user][email]": {
-        remote: "Email already taken! Please enter another",
+        remote: "Email already taken! Please try a different email or login above!",
         required: "Enter an email"
       },
       "booking[user][name]": "Enter your name",
@@ -64,25 +64,53 @@ $(document).ready(function() {
     }
   });
 
-  $( "input[class='contact-info-item']" ).keyup(function() {
-     if ( validEmailAddress() && ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
-      {
-        $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
-      }
-      else
-      {
-        $("#contact-info-complete").attr('class', 'next-step btn btn-block');
-      } 
-  });
+  // $("#name_input").blur(function() {
+  //   $("#name_input").valid()
+  // });
 
-  function validEmailAddress()
-  {
-    var email = $("#email_input").val();
-    var regex = /\S+@\S+\.\S+/i; 
-    valid = email.match(regex);
-    // console.log(valid);
-    return valid;
-  }
+  // $("#email_input").blur(function() {
+  //   $("#email_input").valid()
+  // });
+
+  // $("#street_address").blur(function() {
+  //   $("#street_address").valid()
+  // });
+
+  // $("#state").blur(function() {
+  //   $("#state").valid()
+  // });
+
+  // $("#city").blur(function() {
+  //   $("#city").valid()
+  // });
+
+  // $("#zipcode").blur(function() {
+  //   $("#zipcode").valid()
+  // });
+
+  // $("#phone_input").blur(function() {
+  //   $("#phone_input").valid()
+  // });
+
+
+  // $( ".contact-info-item" ).blur(function() {
+  //    if ( validEmailAddress() && ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
+  //     {
+  //       $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
+  //     }
+  //     else
+  //     {
+  //       $("#contact-info-complete").attr('class', 'next-step btn btn-block');
+  //     } 
+  // });
+
+  // function validEmailAddress()
+  // {
+  //   var email = $("#email_input").val();
+  //   var regex = /\S+@\S+\.\S+/i; 
+  //   valid = email.match(regex);
+  //   return valid;
+  // }
 
 
   $('#card_number').payment('formatCardNumber');
@@ -278,8 +306,13 @@ function updateHours()
     bathroomCount = parseFirstCharacter(bathroomCount);
     bathroomCount = Number(bathroomCount);
 
-    document.getElementById('booking_hours').value = extraCount + bedroomCount + bathroomCount;
-    document.getElementById('recommended_hours').innerHTML = extraCount + bedroomCount + bathroomCount;
+    var totalHours = (extraCount / 2 ) + bedroomCount + bathroomCount;
+
+    // document.getElementById('booking_hours').value = totalHours;
+
+    document.getElementById('recommended_hours').innerHTML = totalHours;
+    $("#booking_hours").val(totalHours);
+    // $("#booking_hours").val();
   }
 
 function countExtras() 
@@ -337,42 +370,42 @@ function setExtrasValue(job)
 // END SET ROOM AND VALUES TO HIDDEN FIELDS //    
 
 //START GOOGLE AUTOCOMPLETE ADDRESS FIELD//
- google.maps.event.addDomListener(window, 'load', initialize);
+ // google.maps.event.addDomListener(window, 'load', initialize);
 
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
   document.getElementById('recommended_hours').innerHTML = 2;
   
-  var input = document.getElementById('street_address');
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  // var input = document.getElementById('street_address');
+  // var autocomplete = new google.maps.places.Autocomplete(input);
 
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                fillInAddress();
-  });
+  // google.maps.event.addListener(autocomplete, 'place_changed', function() {
+  //               fillInAddress();
+  // });
 
-    function fillInAddress() {
+    // function fillInAddress() {
 
-      var place = autocomplete.getPlace();
+    //   var place = autocomplete.getPlace();
 
-      var street_number = place.address_components[0].short_name;
-      var street_name = place.address_components[1].short_name;
-      var city = place.address_components[2].short_name;
-      var state = place.address_components[4].short_name;
-      var zipcode = place.address_components[6].short_name;
-      var address = street_number + " " + street_name
+    //   var street_number = place.address_components[0].short_name;
+    //   var street_name = place.address_components[1].short_name;
+    //   var city = place.address_components[2].short_name;
+    //   var state = place.address_components[4].short_name;
+    //   var zipcode = place.address_components[6].short_name;
+    //   var address = street_number + " " + street_name
 
-      document.getElementById('street_address').value = street_address;
-      document.getElementById('city').value = city;
-      document.getElementById('state').value = state;
-      document.getElementById('zipcode').value = zipcode;
+    //   document.getElementById('street_address').value = street_address;
+    //   document.getElementById('city').value = city;
+    //   document.getElementById('state').value = state;
+    //   document.getElementById('zipcode').value = zipcode;
 
-      //hack because google autocomplete listens to blur event and refills autocomplete//
-      var street_address = $("#street_address");
-      street_address.blur();   
-      setTimeout(function(){
-        street_address.val(address)
-      },0);
-    }
+    //   //hack because google autocomplete listens to blur event and refills autocomplete//
+    //   var street_address = $("#street_address");
+    //   street_address.blur();   
+    //   setTimeout(function(){
+    //     street_address.val(address)
+    //   },0);
+    // }
   }
 //END GOOGLE AUTOCOMPLETE ADDRESS FIELD//
 

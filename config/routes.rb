@@ -5,6 +5,8 @@ CleanIt::Application.routes.draw do
 
   get 'new_booking' => "bookings#new", :path => "cleaning"
 
+  get 'check_email' => "users#check_email_uniqueness", :path => "/check_email_uniqueness"
+
   # get 'booking' => "bookings#index"
 
   post 'bookings' => "bookings#create"
