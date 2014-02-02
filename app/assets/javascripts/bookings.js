@@ -52,12 +52,12 @@ $(document).ready(function() {
         remote: "Email already taken! Please try a different email or login above!",
         required: "Enter an email"
       },
-      "booking[user][name]": "Enter your name",
-      "booking[user][address]": "Enter your address",
+      "booking[user][name]": "We gotta know who you are! Please enter your name.",
+      "booking[user][address]": "Please enter your address! This is where the cleaning will be",
       "booking[user][state]": "Enter your state",
       "booking[user][city]": "Enter your city",
       "booking[user][zipcode]": "Enter your zipcode",
-      "booking[user][phone]": "Enter your phone"
+      "booking[user][phone]": "Please enter your phone. We'll use this to follow up if we have questions!"
     },
     errorPlacement: function(error,element) {
       error.appendTo($("#error_field"));
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
 
   // $( ".contact-info-item" ).blur(function() {
-  //    if ( validEmailAddress() && ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
+  //    if ( ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#email_input").valid()) && ($("#phone_input").valid()) )
   //     {
   //       $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
   //     }
