@@ -12,7 +12,6 @@ $(document).ready(function() {
         $(".fc-day").css("background-color", "#F8F8FF");
         $(this).css('background-color', '#8eee00');
         $("#schedule-time-complete").attr('class', 'btn btn-success btn-block');
-
         scheduled_time.setDate(date.getDate());
         scheduled_time.setMonth(date.getMonth());
         scheduled_time.setFullYear(date.getFullYear());
@@ -25,7 +24,7 @@ $(document).ready(function() {
         right:  'next'
       },
       weekMode: "variable"
-    })
+    });
 
 
 // END CALENDAR
@@ -33,39 +32,40 @@ $(document).ready(function() {
 
 // BEGIN DATA VALIDATION
 
-  $("#cleaning-form").validate({
+ var validator = $("#cleaning-form").validate({
+    // onfocusout: function(element) { $(element).valid(); },
+    onkeyup: false,
     rules: {
             "booking[user][email]": {
-              required: true,
-              email: true,
-              remote: "/check_email_uniqueness"
-            },
-            "booking[user][name]": {
+              remote: "/check_email_uniqueness",
               required: true
             },
-            "booking[user][address]": {
-              required: true
-            },
-            "booking[user][state]": {
-              required: true
-            },
-            "booking[user][city]": {
-              required: true
-            },
-            "booking[user][zipcode]": {
-              required: true
-            },
-            "booking[user][phone]": {
-              required: true              
-            }
-         },
+            "booking[user][name]": "required",
+            "booking[user][address]": "required",
+            "booking[user][state]": "required",
+            "booking[user][city]": "required",
+            "booking[user][zipcode]": "required",
+            "booking[user][phone]": "required"
+           },
+    messages: {
+      "booking[user][email]": {
+        remote: "Email already taken! Please enter another",
+        required: "Enter an email"
+      },
+      "booking[user][name]": "Enter your name",
+      "booking[user][address]": "Enter your address",
+      "booking[user][state]": "Enter your state",
+      "booking[user][city]": "Enter your city",
+      "booking[user][zipcode]": "Enter your zipcode",
+      "booking[user][phone]": "Enter your phone"
+    },
     errorPlacement: function(error,element) {
-      return true;
+      error.appendTo($("#error_field"));
     }
   });
 
   $( "input[class='contact-info-item']" ).keyup(function() {
-     if ( ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
+     if ( validEmailAddress() && ($("#email_input").valid()) && ($("#name_input").valid()) && ($("#street_address").valid()) && ($("#state").valid()) && ($("#city").valid()) && ($("#zipcode").valid()) && ($("#phone_input").valid()) )
       {
         $("#contact-info-complete").attr('class', 'btn btn-success btn-block');
       }
@@ -75,16 +75,14 @@ $(document).ready(function() {
       } 
   });
 
-  // $( "#email_input" ).blur(function() {
-  //    if ( $("#email_input").valid() ) 
-  //     {
-  //       alert("one");
-  //     }
-  //     else
-  //     {
-  //       alert("two");
-  //     } 
-  // });
+  function validEmailAddress()
+  {
+    var email = $("#email_input").val();
+    var regex = /\S+@\S+\.\S+/i; 
+    valid = email.match(regex);
+    // console.log(valid);
+    return valid;
+  }
 
 
   $('#card_number').payment('formatCardNumber');
@@ -168,7 +166,41 @@ $(document).ready(function() {
     });
    // END CALENDAR BUTTONS //
 
+
 });
+
+// BEGIN STRIPE //
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#cleaning-form');
+ 
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        $form.get(0).submit();
+      }
+    };
+ 
+    $(function($) {
+      $('#cleaning-form').submit(function(e) {
+        var $form = $(this);
+ 
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+ 
+        Stripe.createToken($form, stripeResponseHandler);
+ 
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+// END STRIPE //
 
 function parseHour(time)
 {
@@ -391,37 +423,6 @@ function updateConfirmationPage()
 
   }
 
-// BEGIN STRIPE //
-    var stripeResponseHandler = function(status, response) {
-      var $form = $('#cleaning-form');
- 
-      if (response.error) {
-        // Show the errors on the form
-        $form.find('.payment-errors').text(response.error.message);
-        $form.find('button').prop('disabled', false);
-      } else {
-        // token contains id, last4, and card type
-        var token = response.id;
-        // Insert the token into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // and re-submit
-        $form.get(0).submit();
-      }
-    };
- 
-    $(function($) {
-      $('#cleaning-form').submit(function(e) {
-        var $form = $(this);
- 
-        // Disable the submit button to prevent repeated clicks
-        $form.find('button').prop('disabled', true);
- 
-        Stripe.createToken($form, stripeResponseHandler);
- 
-        // Prevent the form from submitting with the default action
-        return false;
-      });
-    });
-// END STRIPE //
+
 
 //END UPDATE CONFIRMATION PAGE//

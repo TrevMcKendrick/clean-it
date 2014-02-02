@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
       @user.stripe_id = stripe_user_object.id
       @user.password = Devise.friendly_token.first(8)
       @user.save
-      Mailer.welcome(@user).deliver
+      # Mailer.welcome(@user).deliver
     end
 
     # CHARGE THE CARD
