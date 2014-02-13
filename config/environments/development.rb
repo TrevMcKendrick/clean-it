@@ -27,7 +27,9 @@ CleanIt::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
+  config.assets.js_compressor = :uglifier
+  config.assets.compress = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

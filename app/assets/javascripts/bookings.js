@@ -3,7 +3,6 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 var scheduled_time = new Date();
-alert("1st alert");
 
 $(document).ready(function() {
 alert("2nd alert");
@@ -141,9 +140,7 @@ alert("2nd alert");
 // BEGIN HASH LISTENER //
 
 $(function(){
-  alert("hash listener 1");
   $(window).hashchange( function(){
-    alert("hash listener 2");
     
     var hash = location.hash;
     if (hash == "") 
@@ -300,7 +297,6 @@ function hideAllForms()
 // BEGIN UPDATE DROPDOWN HOURS //
 function updateHours()
   {
-    alert("updateHours");
     var extraCount = countExtras();
     
     var bedroomCount = document.getElementById('bedroom-value').value;
@@ -343,7 +339,6 @@ function countExtras()
 // BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
 function setBedroomValue(rooms)
   {
-    alert("setBedroomValue");
     document.getElementById('bedroom-value').value = rooms;
     updateHours();
   }
@@ -379,7 +374,6 @@ function setExtrasValue(job)
 
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
-  alert("3rd alert");
   document.getElementById('recommended_hours').innerHTML = 2;
   
   // var input = document.getElementById('street_address');
