@@ -298,6 +298,7 @@ function hideAllForms()
 // BEGIN UPDATE DROPDOWN HOURS //
 function updateHours()
   {
+    alert("updateHours");
     var extraCount = countExtras();
     
     var bedroomCount = document.getElementById('bedroom-value').value;
@@ -314,7 +315,6 @@ function updateHours()
 
     document.getElementById('recommended_hours').innerHTML = totalHours;
     $("#booking_hours").val(totalHours);
-    // $("#booking_hours").val();
   }
 
 function countExtras() 
