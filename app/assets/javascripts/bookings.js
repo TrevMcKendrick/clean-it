@@ -3,8 +3,10 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 var scheduled_time = new Date();
+alert("1st alert");
 
 $(document).ready(function() {
+alert("2nd alert");
 
 // BEGIN CALENDAR 
    $("#calendar").fullCalendar({
@@ -377,6 +379,7 @@ function setExtrasValue(job)
 
  function initialize() {
   //unrelated to Google: sets recommended hours value that user sees
+  alert("3rd alert");
   document.getElementById('recommended_hours').innerHTML = 2;
   
   // var input = document.getElementById('street_address');
