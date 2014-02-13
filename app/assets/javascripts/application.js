@@ -16,7 +16,6 @@
 //= require jquery.cookie
 //= require jquery-fullcalendar.min
 //= require fullcalendar
-//= require google
 //= require jquery.payment
 //= require_tree .
 
