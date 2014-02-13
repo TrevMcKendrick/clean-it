@@ -38,24 +38,24 @@ class BookingsController < ApplicationController
       Mailer.new_booking(@user).deliver
     else
       @user = @booking.build_user(user_params[:user])
-      stripe_user_object = User.create_stripe_user(params[:stripeToken], "blank_description")
+      stripe_user_object = User.create_stripe_user(params[:stripeToken], @user.name)
       @user.stripe_id = stripe_user_object.id
       @user.password = Devise.friendly_token.first(8)
       @user.save
       Mailer.welcome(@user).deliver
     end
 
-    # CHARGE THE CARD
-    # begin
-    #   charge = Stripe::Charge.create(
-    #     :amount => @booking.price, # amount in cents, again
-    #     :currency => "usd",
-    #     :customer => @user.stripe_id,
-    #   )
+    CHARGE THE CARD
+    begin
+      charge = Stripe::Charge.create(
+        :amount => @booking.price, # amount in cents, again
+        :currency => "usd",
+        :customer => @user.stripe_id,
+      )
 
-    # rescue Stripe::CardError => e
-    #   # The card has been declined
-    # end
+    rescue Stripe::CardError => e
+      # The card has been declined
+    end
 
     respond_to do |format|
       if @booking.save
