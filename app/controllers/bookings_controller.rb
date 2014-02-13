@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.save
         sign_in(:user, @user)
-        format.html { redirect_to user_url, notice: 'Booking was successfully saved!' }
+        format.html { redirect_to user_url, notice: 'Booking was saved! Check your email for confirmation.' }
       else
         format.html { render action: 'new' }
       end
