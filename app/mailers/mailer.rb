@@ -6,4 +6,9 @@ class Mailer < ActionMailer::Base
     mail to: @user.email, subject: "Welcome to Refresh"
   end
 
+  def new_booking(user)
+    @user = user
+    mail to: @user.email, subject: "Your cleaning is booked!"
+  end
+
 end

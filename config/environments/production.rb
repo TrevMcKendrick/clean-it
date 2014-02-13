@@ -77,4 +77,16 @@ CleanIt::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.mailgun.org",
+    :port                 => 587,
+    :domain               => "sandbox2071.mailgun.org",
+    :user_name            => "postmaster@havencleaning.com",
+    :password             => "37rcft5vuy81",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.default_url_options = { :host => 'havencleaning.com' }
 end
