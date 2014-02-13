@@ -13,9 +13,11 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require jquery.cookie
-//= require jquery-fullcalendar.min
 //= require fullcalendar
 //= require jquery.payment
-//= require_tree .
-
+//= require jquery.validate
+//= require hashchange
+//= require bookings
+//= require bootstrap
+//= require jquery-ui
+//= require jquery.formatter
