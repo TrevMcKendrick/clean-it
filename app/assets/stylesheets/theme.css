@@ -309,7 +309,7 @@ article footer {
 
   .sec_abt {
 background: #007ED7; /* Old browsers */
-box-shadow:inset 0 0 30px #005490; and -moz-box-shadow:inset 0 0 30px #005490;
+/*box-shadow:inset 0 0 30px #005490; and -moz-box-shadow:inset 0 0 30px #005490;*/
 
 
  border-bottom: 1px solid #CDCDCD;
@@ -342,7 +342,7 @@ padding-left:30px;
 
   .sec_tr {
 background: #6461AC; /* Old browsers */
-box-shadow:inset 0 0 30px #343261; and -moz-box-shadow:inset 0 0 30px #343261;
+/*box-shadow:inset 0 0 30px #343261; and -moz-box-shadow:inset 0 0 30px #343261;*/
 
 
  border-bottom: 1px solid #CDCDCD;
