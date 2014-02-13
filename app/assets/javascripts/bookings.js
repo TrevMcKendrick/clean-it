@@ -5,7 +5,6 @@
 var scheduled_time = new Date();
 
 $(document).ready(function() {
-alert("2nd alert");
 
 // BEGIN CALENDAR 
    $("#calendar").fullCalendar({
