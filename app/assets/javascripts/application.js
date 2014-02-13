@@ -13,11 +13,12 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require fullcalendar
+//= require jquery-ui
+//= require jquery.formatter
 //= require jquery.payment
 //= require jquery.validate
 //= require hashchange
-//= require bookings
+//= require fullcalendar
 //= require bootstrap
-//= require jquery-ui
-//= require jquery.formatter
+//= require bookings
+
