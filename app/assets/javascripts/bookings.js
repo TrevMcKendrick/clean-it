@@ -137,21 +137,21 @@ $(document).ready(function() {
 // END DATA VALIDATION  
 
 // BEGIN HASH LISTENER //
-  $(window).hashchange(function() 
-   {
-      alert("it was called");
-      var hash = location.hash;
-      
-      //if URL hash is blank show the first form
-      if (hash == "") 
-        {
-          hash = "#booking-details"
-        } 
-      
-      showNextForm(hash);
-   });
- 
-   $(window).hashchange();
+
+$(function(){
+
+  $(window).hashchange( function(){
+    var hash = location.hash;
+    if (hash == "") 
+      {
+        hash = "#booking-details"
+      }
+    showNextForm(hash); 
+  })
+
+  $(window).hashchange();
+
+})
 
 // END HASH LISTENER // 
 
