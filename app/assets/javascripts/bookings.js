@@ -139,8 +139,10 @@ $(document).ready(function() {
 // BEGIN HASH LISTENER //
 
 $(function(){
-
+  alert("hash listener 1");
   $(window).hashchange( function(){
+    alert("hash listener 2");
+    
     var hash = location.hash;
     if (hash == "") 
       {
@@ -339,6 +341,7 @@ function countExtras()
 // BEGIN SET ROOM AND VALUES TO HIDDEN FIELDS //
 function setBedroomValue(rooms)
   {
+    alert("setBedroomValue");
     document.getElementById('bedroom-value').value = rooms;
     updateHours();
   }
