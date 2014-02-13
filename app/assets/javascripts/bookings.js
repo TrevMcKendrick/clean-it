@@ -139,7 +139,7 @@ $(document).ready(function() {
 // BEGIN HASH LISTENER //
   $(window).hashchange(function() 
    {
-
+      alert("it was called");
       var hash = location.hash;
       
       //if URL hash is blank show the first form
