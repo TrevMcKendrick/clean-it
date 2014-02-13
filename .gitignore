@@ -16,3 +16,5 @@
 /tmp
 
 /config/initializers/constants.rb
+
+/public/assets
