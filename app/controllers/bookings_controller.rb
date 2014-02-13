@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
       Mailer.welcome(@user).deliver
     end
 
-    CHARGE THE CARD
+    # CHARGE THE CARD
     begin
       charge = Stripe::Charge.create(
         :amount => @booking.price, # amount in cents, again
