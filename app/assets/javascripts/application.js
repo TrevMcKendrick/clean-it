@@ -12,6 +12,7 @@
 
 
 //= require jquery
+//= require bookings
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.formatter
@@ -20,5 +21,5 @@
 //= require hashchange
 //= require fullcalendar
 //= require bootstrap
-//= require bookings
+
 
