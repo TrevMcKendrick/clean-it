@@ -20,6 +20,6 @@ test:
 
 production:
   adapter: postgresql
-  database: ios_link_convert_production
+  database: db/production
   pool: 5
   timeout: 5000
