@@ -83,7 +83,7 @@ CleanIt::Application.configure do
     :port                 => 587,
     :domain               => "sandbox2071.mailgun.org",
     :user_name            => "postmaster@havencleaning.com",
-    :password             => "37rcft5vuy81",
+    :password             => "5jehx8yojah5",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }

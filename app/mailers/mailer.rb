@@ -3,7 +3,7 @@ class Mailer < ActionMailer::Base
 
   def welcome(user)
     @user = user
-    mail to: @user.email, subject: "Welcome to Refresh"
+    mail to: @user.email, subject: "Welcome to EverHaven"
   end
 
   def new_booking(user)
