@@ -25,4 +25,3 @@ production:
   timeout: 5000
   username: trevor
   password: Jello2you
-  host:  198.199.103.182
