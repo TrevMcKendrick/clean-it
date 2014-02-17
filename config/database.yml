@@ -25,3 +25,4 @@ production:
   timeout: 5000
   username: trevor
   password: Jello2you
+  port: 5432
