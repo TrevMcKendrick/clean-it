@@ -23,5 +23,5 @@ production:
   database: db/production
   pool: 5
   timeout: 5000
-  username: everhaven
-  password: everhaven_db
+  username: trevor
+  password: Jello2you
