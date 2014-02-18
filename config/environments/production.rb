@@ -81,12 +81,12 @@ CleanIt::Application.configure do
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.mailgun.org",
     :port                 => 587,
-    :domain               => DEFAULT_MAILER_SENDER,
+    :domain               => EverHavenhq.com,
     :user_name            => "postmaster@havencleaning.com",
     :password             => "5jehx8yojah5",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = { :host => 'havencleaning.com' }
+  config.action_mailer.default_url_options = { :host => 'EverHavenhq.com' }
 end
