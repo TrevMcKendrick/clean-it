@@ -81,8 +81,8 @@ CleanIt::Application.configure do
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.mailgun.org",
     :port                 => 587,
-    :domain               => "EverHavenhq.com",
-    :user_name            => "postmaster@havencleaning.com",
+    :domain               => "everhavenhq.com",
+    :user_name            => "postmaster@everhavenhq.com",
     :password             => "5jehx8yojah5",
     :authentication       => "plain",
     :enable_starttls_auto => true
