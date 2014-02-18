@@ -88,5 +88,5 @@ CleanIt::Application.configure do
     :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = { :host => 'EverHavenhq.com' }
+  config.action_mailer.default_url_options = { :host => 'everhavenhq.com' }
 end
