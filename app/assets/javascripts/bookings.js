@@ -427,10 +427,10 @@ function updateConfirmationPage()
     var zipcode = document.getElementById('zipcode').value;
 
     var bookingPrice = document.getElementById('booking_hours').value * gon.price;
-    var finalPrice = bookingPrice + gon.supplies_price;
+    var finalPrice = bookingPrice //+ gon.supplies_price;
     
     document.getElementById('booking-price').innerHTML = "$" + bookingPrice;
-    document.getElementById('supply-cost').innerHTML = "$" + gon.supplies_price;
+    // document.getElementById('supply-cost').innerHTML = "$" + gon.supplies_price;
 
     document.getElementById('confirmation-time').innerHTML = $.fullCalendar.formatDate(scheduled_time, "dddd MMM d") + " @ " + $.fullCalendar.formatDate(scheduled_time, "h:mm TT");
     document.getElementById('confirmation-hours').innerHTML = document.getElementById('booking_hours').value + " " + "hour cleaning" + " " + "($" + gon.price +  "/hour)";
