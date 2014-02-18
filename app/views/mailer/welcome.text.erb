@@ -1,3 +1,17 @@
 Hi <%= @user.name %>
 
-Thanks for using EverHaven! Your password is <%= @user.password %>.
+Thanks for booking your first EverHaven cleaning! Your cleaning appointment is confirmed for <%= mountain_date(@booking.time) %> at: <%= mountain_time(@booking.time) %>.
+
+You can see details on all your cleanings here: <%= user_url %>
+
+Email: <%= @user.email %>
+Password: <%= @user.password %>
+
+We'll call shortly to confirm a few final details (e.g. where we should take out the trash). 
+
+Or if you have any questions give us a ring at <%= PHONE_NUMBER %>. A human will pick up, and fast!
+
+Thanks,
+The EverHaven Team
+
+

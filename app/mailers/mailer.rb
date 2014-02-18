@@ -1,14 +1,22 @@
 class Mailer < ActionMailer::Base
   default from: DEFAULT_MAILER_SENDER
-
-  def welcome(user)
+  include ApplicationHelper
+  helper :application
+  
+  def welcome(user, booking)
     @user = user
-    mail to: @user.email, subject: "Welcome to EverHaven"
+    @booking = booking
+    mail to: @user.email, subject: confirmation_subject_line(@booking.time)
   end
 
-  def new_booking(user)
+  def new_booking(user, booking)  
     @user = user
-    mail to: @user.email, subject: "Your cleaning is booked!"
+    @booking = booking
+    mail to: @user.email, subject: confirmation_subject_line(@booking.time)
+  end
+
+  def confirmation_subject_line(time)
+    "EverHaven Cleaning confirmed for #{mountain_date(@booking.time)} at #{mountain_time(@booking.time)}."
   end
 
 end

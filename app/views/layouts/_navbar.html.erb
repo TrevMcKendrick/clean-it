@@ -13,8 +13,8 @@
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'%></li>
                 <% else %>
                   <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-                  <li><%= link_to 'Book a cleaning', new_booking_path, :class => 'navbar-link' %></li>
                 <% end %>
+                  <li><%= link_to 'Book a cleaning', new_booking_path, :class => 'navbar-link' %></li>
              </ul>
           </div>
         </div>

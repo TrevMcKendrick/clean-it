@@ -12,8 +12,8 @@
         </li>
         <% user_bookings.each do |booking| %>
             <li class="booking-line">
-              <div class="span3 summary-line date"><%= date(booking.time) %></div>
-              <div class="span3 summary-line time"><%= time(booking.time) %></div>
+              <div class="span3 summary-line date"><%= mountain_date(booking.time) %></div>
+              <div class="span3 summary-line time"><%= mountain_time(booking.time) %></div>
               <div class="span3 summary-line price"><%= prettify_price(booking.price) %></div>
               <div class="span3 summary-line cleaning-details"><%= jobs(booking) %></div>
             </li>
