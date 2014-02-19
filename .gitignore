@@ -17,6 +17,6 @@
 
 /config/initializers/constants.rb
 
-/public/assets
+#/public/assets
 
-/app/assets/images
+# /app/assets/images
