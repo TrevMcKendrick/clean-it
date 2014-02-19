@@ -7,7 +7,7 @@ CleanIt::Application.routes.draw do
 
   get 'check_email' => "users#check_email_uniqueness", :path => "/check_email_uniqueness"
 
-  # get 'booking' => "bookings#index"
+  get 'about' => "about#index"
 
   post 'bookings' => "bookings#create"
 

@@ -6,6 +6,7 @@
           <a class="brand" href="<%= root_url %>">EverHaven</a>
           <div class="nav-collapse">
              <ul class="nav pull-right">
+              <div class="header-middle" id="location-description">Currently serving Ogden to Spanish Fork</div>
               <div class="header-middle"><%= PHONE_NUMBER %></div>
                 <li><%= link_to "Home", root_url %></li>
                 <% if user_signed_in? %>
@@ -15,6 +16,7 @@
                   <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
                 <% end %>
                   <li><%= link_to 'Book a cleaning', new_booking_path, :class => 'navbar-link' %></li>
+                  <li><%= link_to 'About us', about_path, :class => 'navbar-link' %></li>
              </ul>
           </div>
         </div>
