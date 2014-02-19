@@ -2,7 +2,7 @@ module ApplicationHelper
   
   def happy_day
     time = Time.new
-    message = "Happy" + " " + time.strftime("%A")
+    message = "Happy" + " " + time.strftime("%A") + "!"
   end
 
   def mountain_time(time)

@@ -271,11 +271,14 @@ function showNextForm(form)
       if (form == "#payment-info")
       {
         $(".card-assurance").css("display", "block");
+        $(".card-icon").css("display", "inline");
         $("#progress-bar-item-four").addClass('progress-bar-item-active');
       }
 
       if (form == "#finalize-booking")
       {
+        $(".card-assurance").css("display", "block");
+        $(".card-icon").css("display", "inline");
         $("#progress-bar-item-five").addClass('progress-bar-item-active');
         updateConfirmationPage();
       }
@@ -293,6 +296,7 @@ function hideAllForms()
     $("#schedule-time").css("display", "none");
     $("#payment-info").css("display", "none");
     $(".card-assurance").css("display", "none");
+    $(".card-icon").css("display", "none");
     $("#finalize-booking").css("display", "none");
   }
 
