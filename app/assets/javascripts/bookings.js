@@ -3,6 +3,7 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 var scheduled_time = new Date();
+var bookingPrice = 0;
 
 $(document).ready(function() {
 
@@ -420,6 +421,10 @@ function toTitleCase(str)
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
+$('#finalize-booking-button').on('click', function() {
+  ga('send', 'event', 'book-cleaning-button', 'book-cleaning', 'purchase', bookingPrice , {'nonInteraction': 1});
+});
+
 
 //START UPDATE CONFIRMATION PAGE//
 function updateConfirmationPage()
@@ -430,7 +435,7 @@ function updateConfirmationPage()
     var city = document.getElementById('city').value;
     var zipcode = document.getElementById('zipcode').value;
 
-    var bookingPrice = document.getElementById('booking_hours').value * gon.price;
+    bookingPrice = document.getElementById('booking_hours').value * gon.price;
     var finalPrice = bookingPrice //+ gon.supplies_price;
     
     document.getElementById('booking-price').innerHTML = "$" + bookingPrice;
