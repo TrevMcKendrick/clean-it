@@ -422,7 +422,7 @@ function toTitleCase(str)
 }
 
 $('#finalize-booking-button').on('click', function() {
-  ga('send', 'event', 'book-cleaning-button', 'book-cleaning', 'purchase', bookingPrice , {'nonInteraction': 1});
+  ga('send', 'event', 'book-cleaning-button', 'click', 'purchase', bookingPrice , {'nonInteraction': 1});
 });
 
 
