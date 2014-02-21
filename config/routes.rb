@@ -11,6 +11,8 @@ CleanIt::Application.routes.draw do
 
   post 'bookings' => "bookings#create"
 
+  post 'twilio' => "twilio#send_text_message"
+
   root 'home#index'
 
 
