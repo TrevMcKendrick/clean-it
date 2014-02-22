@@ -1,25 +1,22 @@
 <!-- Start Navbar -->
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>
-          <a class="brand" href="<%= root_url %>">EverHaven</a>
-          <div class="nav-collapse">
-             <ul class="nav pull-right">
-              <div class="header-middle" id="location-description">Serving Utah, Idaho, and New Mexico</div>
-              <div class="header-middle"><%= PHONE_NUMBER %></div>
-                <li><%= link_to "Home", root_url %></li>
-                <% if user_signed_in? %>
-                  <li><%= link_to 'Your cleanings', user_path, :class => 'navbar-link' %></li>
-                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'%></li>
-                <% else %>
-                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-                <% end %>
-                  <li><%= link_to 'Book a cleaning', new_booking_path, :class => 'navbar-link' %></li>
-                  <li><%= link_to 'About us', about_path, :class => 'navbar-link' %></li>
-             </ul>
-          </div>
-        </div>
-      </div>
+
+   <div id="header" class="clearfix">
+    <div class="trcontainer">
+      <h3><a href="<%= root_url %>" id="brand">EverHaven</a></h3>
+      <!-- <h5>Serving Utah, Idaho, and New Mexico</h5> -->
+      <h3 class="phone"><%= PHONE_NUMBER %> – </h3>
+      <ul>
+          <li id="header-right"><%= link_to "Home", root_url %></li>
+        <% if user_signed_in? %>
+          <li id="header-right"><%= link_to 'Your cleanings', user_path %></li>
+          <li id="header-right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li id="header-right"><%= link_to "Login", new_user_session_path  %></li>
+        <% end %>
+          <li id="header-right"><%= link_to 'Book a cleaning', new_booking_path %></li>
+          <li id="header-right"><%= link_to 'About us', about_path %></li>
+      </ul>
     </div>
-   <!-- End Navbar -->
+  </div>
+
+<!-- End Navbar -->

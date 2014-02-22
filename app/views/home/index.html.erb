@@ -1,106 +1,60 @@
-
-   <!-- Start Billboard -->
-
-    <div class="billboard">
-    <div class="container" style="width:85%">
-    <div class="row" style="width:1176px;">
-    <div class="span6">
-
-   <h1 class="front-page">Get your home cleaned</h1>
-           <br>
-           <ul>
-            <li>&#x2713; Easy online scheduling</li>
-            <li>&#x2713; Every cleaner background checked</li>
-            <li>&#x2713; Every cleaner bonded & insured</li>
-            <li>&#x2713; 100% Satisfaction Guaranteed</li>
-           </ul>
-                  <br>
-            <div class="btn-toolbar">
-
-
-      <%= button_to "Book a cleaning", new_booking_path, :class => "btn btn-large btn-head-1", :method => :get, :style => "float:right; margin-top:20px; font-size:30px;"  %>
-
-       </div>
-
-        <br>
-
+<%= stylesheet_link_tag "home" %>
+  
+  <div id="billboard">
+    <div class="trcontainer clearfix">
+      <div class="bill-left">
+      <h1>Get your home cleaned</h1>
+      <ul class="checkmark">
+        <li>&#x2713; Easy online scheduling</li>
+        <li>&#x2713; Every cleaner background checked</li>
+        <li>&#x2713; Every cleaner bonded &amp; insured</li>
+        <li>&#x2713; 100% Satisfaction Guaranteed</li>
+      </ul>
+      <%= button_to "Book a cleaning", new_booking_path, :method => :get, :id => "book", :class => "btn btn-large btn-success" %>
       </div>
-
-<div class="span6" style="float:right;">
-  <div class="fancy_placeholder" style="float:right;">
-    <%= image_tag "cleaning.jpg", :class => "shuffle" %>
+      
+      <div class="bill-image">
+        <%= image_tag "cleaning.jpg" %>
+      </div>
+    </div>
+  </div><!-- #billboard -->
+  
+  <div id="happiness">
+    <div class="trcontainer clearfix">
+      <ul>
+        <li><%= image_tag "clean-house-1.jpg" %></li>
+        <li><%= image_tag "clean-house-6.jpg" %></li>
+        <li><%= image_tag "clean-house-3.jpg" %></li>
+      </ul>
+      <h2>Happiness Guaranteed</h2>
+      <p>If you're not happy with your place when we're done, we'll come back and clean it for free.</p>
+    </div>
   </div>
-</div>
-</div>
-</div>
-</div>
-
-   <!-- End Billboard -->
-
-
-
-     <!-- Start Main Content -->
-
-
-<div class="sec_2">
-<div class="container" style="margin-right: 0x; margin-left: 0px">
-<div class="row" style="width:1176px; margin: 0px 100px;">
-<div class="span6" style="margin-left:0px;">
-<ul class="thumbnails" style="width:275%">
-
-<li class="span5">
-<div class="fancycaption fancycaption-fade">
-<%= image_tag "clean-house-1.jpg", :width => "350px", :style => "height:235px;" %>
-
-</div>
-</li>
-
- <li class="span5">
- <div class="fancycaption fancycaption-fade">
- <%= image_tag "clean-house-6.jpg", :width => "350px" %>
- </div>
- </li>
-
- <li class="span5">
- <div class="fancycaption fancycaption-fade">
- <%= image_tag "clean-house-3.jpg", :width => "350px" %>
- </div>
- </li>
- </ul></div>
- <div class="span6" style="width: 100%; text-align: center; margin-left:0px;">
- <h1 style="font-size:50px;">Happiness Guaranteed</h1>
- <br>
- <p style="font-size:18px;">If you're not happy with your place when we're done, we'll come back and clean it for free.</p>
-</div>
-</div>
-</div>
-</div>
-
-<div class="billboard">
-<div class="container">
-<div class="row">
-<div class="span4 text-cent">
-
-<h2>No hidden costs</h2>
-<p>All the cleaning supplies are on us. And our certified cleaners won't haggle you or try to upsell you stuff.</p>
-</div>
-<div class="span4 text-cent">
-
-<h2>Certified cleaners</h2>
-<p>Each of our certified cleaners is background checked and bonded and insured. We connect you with professional cleaners who pass our high standards of cleaning.</p>
-</div>
-<div class="span4 text-cent">
-
-<h2>Relaxing</h2>
-<p>You don't even have to be home for the cleaning. Let us do the hard work while you enjoy some well-deserved spare time.</p>
-</div>
-</div>
-</div>
-</div>
-   <!-- End Main Content -->
-
-<%= render "layouts/footer_images" %>
-<%= render "layouts/footer" %>
-
-
-     
+  
+  <div id="trio">
+    <div class="trcontainer clearfix">
+      <ul>
+        <li>
+          <!-- <div class="span"> -->
+            <h4>No hidden costs</h4>
+            <p>All the cleaning supplies are on us. And our certified cleaners won't haggle you or try to upsell you stuff.</p>  
+          <!-- </div>  -->
+        </li>
+        <li>
+          <!-- <div class="span"> -->
+            <h4>Certified Cleaners</h4>
+            <p>Each of our certified cleaners is background checked and bonded and insured. We connect you with professional cleaners who pass our high standards of cleaning.</p>
+          <!-- </div> -->
+        </li>
+        <li>
+          <!-- <div class="span"> -->
+            <h4>Relaxing</h4>
+            <p>You don't even have to be home for the cleaning. Let us do the hard work while you enjoy some well-deserved spare time.</p>
+          <!-- </div> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <%#= render "layouts/footer_images" %>
+  <%= render "layouts/footer" %>
