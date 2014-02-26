@@ -13,8 +13,8 @@
       <%= button_to "Book a cleaning", new_booking_path, :method => :get, :id => "book", :class => "btn btn-large btn-success" %>
       </div>
       
-      <div class="bill-image">
-        <%= image_tag "cleaning.jpg" %>
+      <div class="bill-image" >
+        <b><%= image_tag "cleaning.jpg", :id => "billboard-image" %></b>
       </div>
     </div>
   </div><!-- #billboard -->
@@ -24,7 +24,7 @@
       <ul>
         <li><%= image_tag "clean-house-1.jpg" %></li>
         <li><%= image_tag "clean-house-6.jpg" %></li>
-        <li><%= image_tag "clean-house-3.jpg" %></li>
+        <li><%= image_tag "clean-house-3.jpg", :id => "house-3" %></li>
       </ul>
       <h2>Happiness Guaranteed</h2>
       <p>If you're not happy with your place when we're done, we'll come back and clean it for free.</p>
@@ -35,22 +35,16 @@
     <div class="trcontainer clearfix">
       <ul>
         <li>
-          <!-- <div class="span"> -->
             <h4>No hidden costs</h4>
             <p>All the cleaning supplies are on us. And our certified cleaners won't haggle you or try to upsell you stuff.</p>  
-          <!-- </div>  -->
         </li>
         <li>
-          <!-- <div class="span"> -->
             <h4>Certified Cleaners</h4>
             <p>Each of our certified cleaners is background checked and bonded and insured. We connect you with professional cleaners who pass our high standards of cleaning.</p>
-          <!-- </div> -->
         </li>
         <li>
-          <!-- <div class="span"> -->
             <h4>Relaxing</h4>
             <p>You don't even have to be home for the cleaning. Let us do the hard work while you enjoy some well-deserved spare time.</p>
-          <!-- </div> -->
         </li>
       </ul>
     </div>

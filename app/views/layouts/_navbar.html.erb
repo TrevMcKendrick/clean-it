@@ -4,17 +4,17 @@
     <div class="trcontainer">
       <h3><a href="<%= root_url %>" id="brand">EverHaven</a></h3>
       <!-- <h5>Serving Utah, Idaho, and New Mexico</h5> -->
-      <h3 class="phone"><%= PHONE_NUMBER %> – </h3>
       <ul>
-          <li id="header-right"><%= link_to "Home", root_url %></li>
+          <li><%= PHONE_NUMBER %> &nbsp;&nbsp;–</li>
+          <li><%= link_to "Home", root_url %></li>
         <% if user_signed_in? %>
-          <li id="header-right"><%= link_to 'Your cleanings', user_path %></li>
-          <li id="header-right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Your cleanings', user_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li id="header-right"><%= link_to "Login", new_user_session_path  %></li>
+          <li><%= link_to "Login", new_user_session_path  %></li>
         <% end %>
-          <li id="header-right"><%= link_to 'Book a cleaning', new_booking_path %></li>
-          <li id="header-right"><%= link_to 'About us', about_path %></li>
+          <li><%= link_to 'Book a cleaning', new_booking_path %></li>
+          <li><%= link_to 'About us', about_path %></li>
       </ul>
     </div>
   </div>

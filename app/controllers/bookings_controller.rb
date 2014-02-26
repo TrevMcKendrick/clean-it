@@ -107,6 +107,7 @@ class BookingsController < ApplicationController
     end
 
     def user_params
+      binding.pry
       params.require(:booking).permit(user: [:name, :address, :city, :state, :zipcode, :email, :phone])
     end
 
